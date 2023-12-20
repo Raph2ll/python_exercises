@@ -1,5 +1,5 @@
 # Atvidades do Livro do Sérgio Luiz Banin, "Python3: Conceitos e aplicações"
-
+import random
 #4.1 Escreva um programa que leia um string que deve conter,obrigatoriamente, um número inteiro e, caso isso não aconteça, emita uma mensagem de erro.
 def validando_entrada_numerica(num1:int):
     if num1.isnumeric():
@@ -37,7 +37,7 @@ def lista_com_numeros(num1:int):
             lista.append(N)
 print(lista_com_numeros(10))
 #4.5 Escreva um programa que leia um número inteiro N e gere uma lista com N elementos aleatórios (utilize a função randint explicada no Exercício resolvido 3.7) entre 10 e 50. Exiba a lista gerada e exiba também a mesma lista com seus elementos ordenados em ordem crescente.
-import random
+# random
 def cria_lista_aleatoria(num1):
     try:
         N = int(num1)
@@ -50,6 +50,28 @@ def cria_lista_aleatoria(num1):
         if item not in L:
             L.append(item)
     L.sort()
-    return L
-        
-print(cria_lista_aleatoria(10))1
+    return L       
+print(cria_lista_aleatoria(10))
+#4.6 Escreva um programa que leia dois números inteiros Lin e Col, que representam, respectivamente, a quantidade de linhas e colunas em uma matriz. Utilizando listas aninhadas, crie uma representação para essa matriz, utilizando a função randint para gerar números para cada posição da matriz. Apresente-a na tela com uma aparência matricial.
+# random
+def matrix(Lin:int,Col:int):
+    M = []
+    i = 0
+    while i < Lin:
+        M.append([])
+    j = 0
+    while j < Col:
+        M[i].append(random.randint(0, 20))
+        j += 1
+        i += 1
+    # return M
+    i = 0
+    while i < Lin:
+        j = 0
+        print('|', end='')
+    while j < Col:
+        print('{0:4}'.format(M[i][j]), end='')
+        j+=1
+        print(' |')
+        i+=1
+print(matrix(6,4))
