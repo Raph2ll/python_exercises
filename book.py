@@ -75,3 +75,13 @@ def matrix(Lin:int,Col:int):
         print(' |')
         i+=1
 print(matrix(6,4))
+#4.7 A sequência de Fibonacci já foi explicada no Exercício resolvido 3.7. Escreva um programa que gere os N primeiros termos dessa sequência utilizando uma lista para armazená-los. N é um número inteiro a ser lido do teclado e deve, obrigatoriamente, ser maior ou igual a 2.
+def lista_fibonacci(N:int):
+    L = [0, 1]
+    IN = int(N)
+    if (IN) < 2:
+        print("Digite um número maior que 2")
+    for I in range(IN):
+        L.append(L[I] + L[I + 1])
+    return L
+print(lista_fibonacci(10))
