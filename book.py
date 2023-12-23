@@ -85,3 +85,14 @@ def lista_fibonacci(N:int):
         L.append(L[I] + L[I + 1])
     return L
 print(lista_fibonacci(10))
+#4.8 Escreva um programa que permaneça em laço lendo números inteiros enquanto os valores digitados forem diferentes de zero. Para cada valor digitado, adicione-o a uma lista na posição imediatamente anterior ao primeiro elemento da lista que seja maior ou igual a ele. Exiba a lista no final.
+def gerador_lista():
+    L = []
+    while True:
+        N = int(input('Digite um número: '))
+        if N == 0:
+            break
+        else:
+            L.append(N)
+    return L
+print(gerador_lista())
