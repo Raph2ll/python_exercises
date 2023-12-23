@@ -96,3 +96,15 @@ def gerador_lista():
             L.append(N)
     return L
 print(gerador_lista())
+#4.9 Escreva um programa que leia um número inteiro N e gere uma lista com números pares de 2 até N. Se N for par, deve estar incluído na lista. Em seguida, inicie um laço que deve permanecer em execução enquanto x for diferente de zero. Para cada valor de x fornecido, o programa deve informar se x está ou não na lista.
+def busca_sequencial(N:int):
+    L = list(range(2,N+1,2))
+    num1 = 1
+    while num1 != 0:
+        num1 = int(input('Digite um número'))
+        if num1 in L:
+            print(f'{num1} está na lista')
+        elif num1 not in L:
+            print(f'{num1} não está na lista')
+    return L
+print(busca_sequencial(20))
