@@ -108,3 +108,20 @@ def busca_sequencial(N:int):
             print(f'{num1} não está na lista')
     return L
 print(busca_sequencial(20))
+#4.10 O algoritmo de busca binária é significativamente mais rápido que o de busca sequencial quando aplicado a grandes conjuntos de dados. Porém, ele requer que a lista esteja ordenada. A ideia básica implementada nesse algoritmo é verificar se o valor procurado “x” está na posição central da lista. Se estiver, então, o valor foi encontrado e o algoritmo termina. Caso não esteja e x seja menor que o valor central, então, a busca prossegue na metade à esquerda do centro; caso seja maior, a busca prossegue na metade à direita.
+def busca_binaria(N: int):
+    L = list(range(2, N + 1, 2))
+    num1 = int(input('Digite um número'))
+    ini = 0
+    fim = len(L) - 1
+    while ini <= fim:
+        meio = (ini + fim) // 2
+        if num1 == L[meio]:
+            print(f'{num1} está na lista')
+            return
+        elif num1 < L[meio]:
+            fim = meio - 1
+        else:
+            ini = meio + 1
+    print(f'{num1} não está na lista')
+print(busca_binaria(20))
