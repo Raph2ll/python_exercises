@@ -125,3 +125,17 @@ def busca_binaria(N: int):
             ini = meio + 1
     print(f'{num1} não está na lista')
 print(busca_binaria(20))
+#4.11 Escreva um programa que ordene uma lista não ordenada utilizando o algoritmo Bubble Sort. Em Python, para ordenar uma lista de qualquer tamanho, basta utilizar o método sort ou a função sorted, que estão prontos e já foram mencionados neste capítulo. Portanto, o objetivo deste exercício é mostrar e explicar a lógica do algoritmo para o leitor que está iniciando
+def ordena_bolha():
+    L = [17, 4, 23, 8, 19, 12]
+    Trocou = 1
+    while Trocou:
+        Trocou = 0
+        i = 0
+        while i < len(L) - 1:
+            if L[i] > L[i+1]:
+                L[i],L[i+1] = L[i+1],L[i]
+                Trocou = 1
+            i+=1
+    return L
+print(ordena_bolha())
