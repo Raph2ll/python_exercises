@@ -148,3 +148,12 @@ def ordem_leitura():
     L.reverse() # L[::-1]
     return L
 print(ordem_leitura())
+#2. Escreva um programa que leia do teclado duas listas com tamanho 10, com números inteiros. Em seguida, o programa deve juntar as duas listas em uma única com o tamanho 20.
+def lista_dupla():
+    L1, L2 = [], []
+    for index in range(10):
+        L1.append(int(input('Digite um número')))
+    for index in range(10):
+        L2.append(int(input('Digite um número')))
+    return L1 + L2
+print(lista_dupla())
