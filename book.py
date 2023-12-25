@@ -139,3 +139,12 @@ def ordena_bolha():
             i+=1
     return L
 print(ordena_bolha())
+#Exercícios propostos
+#1. Escreva um programa que leia do teclado uma lista com tamanho de 10 elementos e exiba-a na tela na ordem inversa à ordem de leitura.
+def ordem_leitura():
+    L = []
+    for index in range(10):
+        L.append(input('Digite um número'))
+    L.reverse() # L[::-1]
+    return L
+print(ordem_leitura())
