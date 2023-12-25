@@ -166,3 +166,17 @@ def preenche_lista(size1:int,size2:int):
         L2.append(int(random.randint(1, 50)))
     return L1 + L2
 print(preenche_lista(5,7))
+#4. Escreva um programa que leia uma lista com N números inteiros, em que N é um número inteiro previamente digitado pelo usuário. O programa não deve aceitar um número digitado que já esteja inserido na lista, sendo que, quando essa situação ocorrer, uma mensagem deve ser dada ao usuário. Por fim, exibir na tela a lista resultante.
+def lista_unica():
+    L = []
+    index = 0
+    while index < 10:
+        N = int(input('Digite um número'))
+        if N in L:
+            print('Número já inserido')
+            index = index
+        else:
+            L.append(N)
+            index += 1
+    return L
+print(lista_unica())
