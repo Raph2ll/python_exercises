@@ -157,3 +157,12 @@ def lista_dupla():
         L2.append(int(input('Digite um número')))
     return L1 + L2
 print(lista_dupla())
+#3.Escreva um programa que preencha com números inteiros duas listas denominadas A e B com diferentes tamanhos nA e nB,respectivamente. Em seguida, o programa deve juntar as duas em uma única lista com o tamanho nA + nB. Exibir na tela a lista resultante.
+def preenche_lista(size1:int,size2:int):
+    L1, L2 = [], []
+    for index in range(size1):
+        L1.append(int(random.randint(1, 50)))
+    for index in range(size2):
+        L2.append(int(random.randint(1, 50)))
+    return L1 + L2
+print(preenche_lista(5,7))
