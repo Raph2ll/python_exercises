@@ -285,5 +285,6 @@ def bem_grande(N:int):
             print('Pesquisa encerrada')
             return
         elif pesquisa in L:
-            print(f'O valor {pesquisa} foi encontrado nas posições: {[L.index(pesquisa)]}')
-print(bem_grande(5001))
+            indices_encontrados = [i for i, valor in enumerate(L) if valor == pesquisa]
+            print(f'O valor {pesquisa} foi encontrado nas posições: {indices_encontrados}')
+print(bem_grande(5003))
