@@ -180,3 +180,26 @@ def lista_unica():
             index += 1
     return L
 print(lista_unica())
+#5. Escreva um programa que leia do teclado dois números inteiros nA e nB e leia também duas listas denominadas A e B com os tamanhos nA e nB, respectivamente. Na leitura de cada uma das listas é obrigatório que não sejam aceitos valores repetidos. Em seguida, o programa deve juntar as duas em uma única lista R (resultante), tomando o cuidado de que R não tenha valores duplicado.
+def lista_unica(nA:int,nB:int):
+    A, B = [], []
+    index = 0
+    while index < nA:
+        N = int(input('Digite um número'))
+        if N in A:
+            print('Número já inserido')
+            index = index
+        else:
+            A.append(N)
+            index += 1
+    index = 0
+    while index < nB:
+        N = int(input('Digite um número'))
+        if N in B:
+            print('Número já inserido')
+            index = index
+        else:
+            B.append(N)
+            index += 1
+    return A + B
+print(lista_unica(2,5))
