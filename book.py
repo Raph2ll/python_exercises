@@ -261,13 +261,29 @@ def min_max(MIN:int,MAX:int):
 print(min_max(2,1))
 #10. Escreva um programa que leia do teclado uma lista com N elementos. Em seguida, o programa deve eliminar os elementos que estiverem repetidos, mantendo apenas a primeira ocorrência de cada. Apresentar a lista resultante na tela. Os valores eliminados devem ser armazenados em outra lista que também deve ser exibida.
 def lista_repetida(size:int):
-    L , L2, index = [], [], 0
-    while index < size:
+    L , L2 = [], []
+    while len(L) < size:
         N = int(input('Digite um número'))
         if N in L:
             L2.append(N)
         else:
             L.append(N)
-        index +=1
     return L2, L
 print(lista_repetida(10))
+#11. Faça um programa que leia um número inteiro N bem grande (acima de 5.000). Preencha uma lista de tamanho N com números inteiros aleatórios positivos. Em seguida, inicie um laço de pesquisa, no qual o valor a ser pesquisado deve ser lido do teclado, e o programa deve dizer se tal valor está ou não contido na lista, bem como dizer sua posição. No caso de várias ocorrências, exibir todas. O laço de pesquisa termina quando for digitado o zero. Use o algoritmo de busca sequencial.
+#random
+def bem_grande(N:int):
+    L = []
+    if N <= 5000:
+        print('Por favor, digite um número maior que 5000.')
+        return
+    for index in range(N):
+        L.append(int(random.randint(1, 50)))
+    while True:
+        pesquisa = int(input('Digite o valor a ser pesquisado (ou 0 para sair): '))
+        if pesquisa == 0:
+            print('Pesquisa encerrada')
+            return
+        elif pesquisa in L:
+            print(f'O valor {pesquisa} foi encontrado nas posições: {[L.index(pesquisa)]}')
+print(bem_grande(5001))
