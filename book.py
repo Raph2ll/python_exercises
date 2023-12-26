@@ -218,10 +218,11 @@ def razao_pa(size:int):
     return L
 print(razao_pa(2))
 #7. Escreva um programa que leia um número N obrigatoriamente entre 0 e 50 e, em seguida, leia N números reais em uma lista A. O programa deve separar os valores lidos em A em outras duas listas NEG e POS:a primeira contendo somente os valores negativos e a segunda contendo os valores positivos e zero. Apresentar na tela as listas NEG e POS e a quantidade de valores contidos em cada uma.
+#random
 def valores_contidos():
     N, A, L, NEG, POS = [], [], [], [], []
     while len(N) < 10:
-        N.append(int(random.randint(1, 50)))
+        N.append(int(random.randint(0, 50)))
     while len(A) < 10:
         A.append(int(input('Digite um valor para A')))
     L = N + A
@@ -235,3 +236,15 @@ def valores_contidos():
             print('Número zero. Ignorando.')
     return f'Numeros positivos: {POS}\nNumeros negativos: {NEG}'
 print(valores_contidos())
+#8. Escreva um programa que leia um número N (entre 0 e 50) e, em seguida, defina uma lista V preenchendo-a com N números inteiros aleatórios (utilizar a função randint). Exiba-a na tela. Inicie um laço no qual será feita a leitura de um número X e que termina quando X for zero. Pesquise se X está ou não na lista V e, caso esteja, elimine todas as suas ocorrências.
+def ocorrencias(X:int):
+    V = []
+    while len(V) < 10:
+        V.append(int(random.randint(0, 50)))
+    for index in range(len(V)):
+        #print(f'{V}')
+        if V[index-2] == X:
+            print(f'Achamos o numero {X} na posição {index}')
+            V.remove(X)
+    return V
+print(ocorrencias(2))
