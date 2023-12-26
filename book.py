@@ -248,3 +248,14 @@ def ocorrencias(X:int):
             V.remove(X)
     return V
 print(ocorrencias(2))
+#9. O programa deverá ler dois inteiros chamados Min e Max. Min pode ser qualquer valor e Max, obrigatoriamente, deve ser maior que Min. Em seguida, preencher uma lista com todos os valores divisíveis por 7 contidos no intervalor fechado [Min, Max]. Exibir a lista resultante n tela.
+def min_max(MIN:int,MAX:int):
+    L = []
+    if MIN > MAX:
+        return f'max: {MAX} deve ser maior que min: {MIN}'
+    while MIN < MAX:
+        if MIN % 7 == 0:
+            L.append(MIN)
+        MIN += 1
+    return L
+print(min_max(2,1))
