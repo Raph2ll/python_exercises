@@ -203,3 +203,16 @@ def lista_unica(nA:int,nB:int):
             index += 1
     return A + B
 print(lista_unica(2,5))
+#6. Escreva um programa que leia três dados de entrada: o primeiro termo, a razão e a quantidade de termos de uma P.A., todos números inteiros. O programa deve calcular todos os termos, colocando-os em uma lista, e exibi-la no final. Esse exercício já foi resolvido e explicado no Capítulo 3 (veja Exercício resolvido 3.2). A diferença, aqui, é que se pede para utilizar uma lista para armazenar os diversos termos antes de exibi-los.
+def razao_pa(size:int):
+    L, index = [], 0
+    while index < size:
+        A = int(input('Digite o valor de A'))
+        B = int(input('Digite o valor de B'))
+        index += 1
+        if B == 0:
+            print('Não é possível calcular a divisão')
+        else:
+            L.append(A/B)
+    return L
+print(razao_pa(2))         
