@@ -259,3 +259,15 @@ def min_max(MIN:int,MAX:int):
         MIN += 1
     return L
 print(min_max(2,1))
+#10. Escreva um programa que leia do teclado uma lista com N elementos. Em seguida, o programa deve eliminar os elementos que estiverem repetidos, mantendo apenas a primeira ocorrência de cada. Apresentar a lista resultante na tela. Os valores eliminados devem ser armazenados em outra lista que também deve ser exibida.
+def lista_repetida(size:int):
+    L , L2, index = [], [], 0
+    while index < size:
+        N = int(input('Digite um número'))
+        if N in L:
+            L2.append(N)
+        else:
+            L.append(N)
+        index +=1
+    return L2, L
+print(lista_repetida(10))
