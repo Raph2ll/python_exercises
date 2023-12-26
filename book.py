@@ -158,6 +158,7 @@ def lista_dupla():
     return L1 + L2
 print(lista_dupla())
 #3.Escreva um programa que preencha com números inteiros duas listas denominadas A e B com diferentes tamanhos nA e nB,respectivamente. Em seguida, o programa deve juntar as duas em uma única lista com o tamanho nA + nB. Exibir na tela a lista resultante.
+#random
 def preenche_lista(size1:int,size2:int):
     L1, L2 = [], []
     for index in range(size1):
@@ -215,4 +216,22 @@ def razao_pa(size:int):
         else:
             L.append(A/B)
     return L
-print(razao_pa(2))         
+print(razao_pa(2))
+#7. Escreva um programa que leia um número N obrigatoriamente entre 0 e 50 e, em seguida, leia N números reais em uma lista A. O programa deve separar os valores lidos em A em outras duas listas NEG e POS:a primeira contendo somente os valores negativos e a segunda contendo os valores positivos e zero. Apresentar na tela as listas NEG e POS e a quantidade de valores contidos em cada uma.
+def valores_contidos():
+    N, A, L, NEG, POS = [], [], [], [], []
+    while len(N) < 10:
+        N.append(int(random.randint(1, 50)))
+    while len(A) < 10:
+        A.append(int(input('Digite um valor para A')))
+    L = N + A
+    for index in range(len(L)):
+        print(L[index])
+        if L[index] > 0:
+            POS.append(L[index])
+        elif L[index] < 0:
+            NEG.append(L[index])
+        else:
+            print('Número zero. Ignorando.')
+    return f'Numeros positivos: {POS}\nNumeros negativos: {NEG}'
+print(valores_contidos())
