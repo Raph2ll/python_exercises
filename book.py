@@ -288,3 +288,16 @@ def bem_grande(N:int):
             indices_encontrados = [i for i, valor in enumerate(L) if valor == pesquisa]
             print(f'O valor {pesquisa} foi encontrado nas posições: {indices_encontrados}')
 print(bem_grande(5003))
+#12. Escreva um programa que leia do teclado duas matrizes de dimensões 2×2 e mostre na tela a soma dessas duas matrizes.
+def matrizes(size1:int,size2:int):
+    matriz1, matriz2 = [], []
+    for row in range(size1):
+        l1 = int(input('Digite l1'))
+        l2 = int(input('Digite l2'))
+        matriz1.append([l1,l2])
+    for row in range(size2):
+        l1 = int(input('Digite l1'))
+        l2 = int(input('Digite l2'))
+        matriz2.append([l1,l2])
+    return matriz1 + matriz2
+print(matrizes(4,4))
