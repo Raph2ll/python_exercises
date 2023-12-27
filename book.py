@@ -321,3 +321,30 @@ def matrizes2(size: int):
                 ret.append(matriz1[i][j] * matriz2[i][j])
     return ret
 print(matrizes2(2))
+#14. A matriz a seguir mostra o custo unitário de cada produto e a quantidade de cada um dos produtos no estoque de três lojas de uma rede. Escreva um programa que exiba na tela as respostas para as perguntas. Na solução desse problema, elabore uma maneira de armazenar seus dados utilizando lista e sublistas. Os dados da matriz devem ser lidos do teclado.
+def matriz_produtos():
+    M = [
+    [72.35, 373, 558, 358],
+    [43.93, 1228, 1448, 907],
+    [17.84, 4135, 2059, 3122],
+    [23.19, 1139, 1450, 843]
+    ]
+
+    loja1, loja2, loja3 = 0, 0, 0
+
+    produtoA = M[0][0] * (M[0][1] + M[0][2] + M[0][3])
+    produtoB = M[1][0] * (M[1][1] + M[1][2] + M[1][3])
+    produtoC = M[2][0] * (M[2][1] + M[2][2] + M[2][3])
+    produtoD = M[3][0] * (M[3][1] + M[3][2] + M[3][3])
+
+    for linha in M:
+        loja1 += linha[0] * linha[1]
+        loja2 += linha[0] * linha[2]
+        loja3 += linha[0] * linha[3]
+       
+    print(f'Valor total de estoque da loja 1: R${loja1}, loja 2: R${loja2}, loja 3: R${loja3}')
+    
+    print(f'Valor de estoque do produto A: R${produtoA}, produto B: R${produtoB}, produto C: R${produtoC}, produtoD: R${produtoD}')
+
+    print(f'Valor de estoque de todos os produtos{loja1 + loja2 + loja3}')
+print(matriz_produtos())
