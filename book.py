@@ -302,45 +302,22 @@ def matrizes(size1:int,size2:int):
     return matriz1 + matriz2
 print(matrizes(4,4))
 #13. Escreva um programa que leia do teclado duas matrizes de dimensões 2×2 e mostre na tela a multiplicação dessas duas matrizes.
-#Não entendi muito bem a proposta dessa atv
-def matrizes2_1(size1: int, size2: int):
-    matriz1, matriz2, = [], []
+def matrizes2(size: int):
+    matriz1, matriz2, ret = [], [], []
 
-    for _ in range(size1):
+    for _ in range(size):
         l1 = int(input('Digite l1'))
         l2 = int(input('Digite l2'))
-        matriz1.append([l1 * l2])
-
-    for _ in range(size2):
-        l1 = int(input('Digite l1'))
-        l2 = int(input('Digite l2'))
-        matriz2.append([l1 * l2])
-
-    return matriz1 + matriz2
-
-print(matrizes2_1(4,4))
-
-def matrizes2_2(size1: int, size2: int):
-    matriz1, matriz2 = [], []
-
-    for _ in range(size1):
-        l1 = int(input('Digite l1: '))
-        l2 = int(input('Digite l2: '))
         matriz1.append([l1, l2])
 
-    for _ in range(size2):
-        l1 = int(input('Digite l1: '))
-        l2 = int(input('Digite l2: '))
+    for _ in range(size):
+        l1 = int(input('Digite l1'))
+        l2 = int(input('Digite l2'))
         matriz2.append([l1, l2])
 
 
-    resultado = [[0, 0] for _ in range(size1)]
-    print(resultado)
-    for i in range(size1):
-        for j in range(size2):
-            for k in range(size2):
-                resultado[i][j] += matriz1[i][k] * matriz2[k][j]
-
-    return resultado
-
-print(matrizes2_2(8, 2))
+    for i in range(size):
+        for j in range(size):
+                ret.append(matriz1[i][j] * matriz2[i][j])
+    return ret
+print(matrizes2(2))
