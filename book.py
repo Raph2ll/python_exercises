@@ -363,3 +363,11 @@ def numeros_primos(N:int):
                 return 0
         return 1
 print(numeros_primos(int(input('Digite um número'))))
+#5.2 Escreva uma função que receba duas listas L1 e L2 como parâmetro de entrada e retorne uma lista que seja a interseção de L1 e L2, em que uma lista interseção é aquela que contém os elementos que estejam presentes em ambas, L1 e L2.
+def intersecao_listas(L1,L2):
+    L = []
+    for index in L1:
+        if index in L2:
+            L.append(index)
+    return L
+print(intersecao_listas([2,3,4,5,6], [2,3,5,6,7]))
