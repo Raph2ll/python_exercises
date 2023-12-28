@@ -395,3 +395,11 @@ lista_ordenada = [3,8,11,14,16,19,25,29,31,37,42,46,53,58,60,63,71,82]
 numero_alvo = 7
 
 print(busca_binaria_recursiva(lista_ordenada, numero_alvo, 0, len(lista_ordenada) - 1))
+#Exercícios propostos
+#1. Escreva uma função que recebe um número inteiro como parâmetro de entrada e retorna o texto “PAR” ou “ÍMPAR”
+def par_impar(N:int):
+    if N % 2 == 0:
+        return 'PAR'
+    else:
+        return 'ÍMPAR'
+print(par_impar(2))
