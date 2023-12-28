@@ -403,3 +403,25 @@ def par_impar(N:int):
     else:
         return 'ÍMPAR'
 print(par_impar(2))
+#2. Utilize a função EPrimo desenvolvida no Exercício resolvido 5.1 para carregar uma lista contendo os N primeiros números primos, em que N é um número inteiro fornecido pelo usuário.
+def numeros_primos(N, L):
+    ret = []
+    for num in L:
+        if num <= 1:
+            continue
+        elif num == 2:
+            ret.append(num)
+        elif num % 2 == 0:
+            continue
+        else:
+            is_prime = True
+            for i in range(3, int(num**0.5) + 1, 2):
+                if num % i == 0:
+                    is_prime = False
+                    break
+            if is_prime:
+                ret.append(num)
+            if len(ret) == N:
+                break
+    return ret
+print(numeros_primos(5, [2, 2, 2, 2, 2, 2, 3, 2, 2, 2]))
