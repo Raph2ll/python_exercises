@@ -378,3 +378,20 @@ def soma_lista_recursiva(L):
     else:
         return L[0] + soma_lista_recursiva(L[1:])
 print(soma_lista_recursiva([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+#5.4 Escreva uma função que recebe dois parâmetros: uma lista L contendo números inteiros e organizada em ordem crescente; um número inteiro N. Essa função deve verificar se N está contido em L utilizando o algoritmo de busca binária e retornar à posição em que ele se encontra ou retornar 0 caso N não esteja na lista.
+def busca_binaria_recursiva(lista, alvo, inicio, fim):
+    if inicio <= fim:
+        meio = (inicio + fim) // 2
+        valor_meio = lista[meio]
+
+        if valor_meio == alvo:
+            return meio 
+        elif valor_meio < alvo:
+            return busca_binaria_recursiva(lista, alvo, meio + 1, fim)
+        else:
+            return busca_binaria_recursiva(lista, alvo, inicio, meio - 1)
+    return 0  
+lista_ordenada = [3,8,11,14,16,19,25,29,31,37,42,46,53,58,60,63,71,82]
+numero_alvo = 7
+
+print(busca_binaria_recursiva(lista_ordenada, numero_alvo, 0, len(lista_ordenada) - 1))
