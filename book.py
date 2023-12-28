@@ -348,3 +348,18 @@ def matriz_produtos():
 
     print(f'Valor de estoque de todos os produtos{loja1 + loja2 + loja3}')
 print(matriz_produtos())
+#5.1 Escreva uma função que receba como parâmetro de entrada um número inteiro N. Ela deve retornar 1 se N for primo ou 0, caso não seja. Esse problema já foi discutido no Exercício resolvido 3.4. Considerações para a solução: na função serão considerados apenas números maiores que 1. O número 2 é o único par que é primo.
+def numeros_primos(N:int):
+    if N <= 1:
+        return 0
+    elif N == 2:
+        return 1
+    elif N % 2 == 0:
+        return 0
+    else:
+        # Verifica divisibilidade a partir de 3 até a raiz quadrada do número
+        for i in range(3, int(N**0.5) + 1, 2):
+            if N % i == 0:
+                return 0
+        return 1
+print(numeros_primos(int(input('Digite um número'))))
