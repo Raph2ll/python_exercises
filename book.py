@@ -371,3 +371,10 @@ def intersecao_listas(L1,L2):
             L.append(index)
     return L
 print(intersecao_listas([2,3,4,5,6], [2,3,5,6,7]))
+#5.3 Suponha que uma lista está carregada com diversos números inteiros. Escreva uma função recursiva que calcule a soma desses valores. Para testar essa função, use a lista L = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], cuja soma resulta = 55.
+def soma_lista_recursiva(L):
+    if not L:
+        return 0
+    else:
+        return L[0] + soma_lista_recursiva(L[1:])
+print(soma_lista_recursiva([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
