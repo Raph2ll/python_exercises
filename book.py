@@ -448,3 +448,12 @@ print(converte_binario(5))
 def contar_ocorrencias(lista, valor):
     return lista.count(valor)
 print(contar_ocorrencias([2,2,2,2], 2))
+#6. Escreva um programa que receba como parâmetro de entrada um número inteiro de 5 dígitos no intervalo fechado [10000, 30000] que represente códigos de produtos vendidos em uma loja. A função deve calcular e retornar o dígito verificador utilizando regra de cálculo explicada a seguir. Considere o código 21853, em que cada dígito é multiplicado por um peso começando em 2, os valores obtidos são somados, e do total obtido calcula-se o resto de sua divisão por 7.
+def base_7(N:int):
+    ret = 0
+    if N < 10000 or N > 30000:
+        return 'Digite um valor entre 10000 e 30000'
+    for index, digito in enumerate(str(N), start=2):
+        ret += index * int(digito)
+    return ret % 7
+print(base_7(21853))
