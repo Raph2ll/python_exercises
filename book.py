@@ -444,3 +444,7 @@ def converte_binario(N:int):
 
     return bits
 print(converte_binario(5))
+#5. Escreva uma função que receba como parâmetro de entrada uma lista L de números inteiros e um valor. A função deve retornar quantas vezes o valor está contido na lista. Caso ele não esteja em L, retorne 0.
+def contar_ocorrencias(lista, valor):
+    return lista.count(valor)
+print(contar_ocorrencias([2,2,2,2], 2))
