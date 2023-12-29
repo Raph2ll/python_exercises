@@ -480,3 +480,7 @@ def retorna_tupla(L:list):
 
     return (soma,media,menor,maior)
 print(retorna_tupla([2,3,4,5,6]))
+#9. Escreva uma função que receba uma lista L e elimine os eventuais elementos repetidos contidos na mesma, deixando na lista resultante apenas uma ocorrência de cada elemento. Escreva um programa para testar essa função, o qual deve ler do teclado os elementos que farão parte da lista. (veja o Exercício proposto 4.10)
+def recebe_lista(L:list):
+    return list(set(L))
+print(recebe_lista([2,2,2,3,4,5]))
