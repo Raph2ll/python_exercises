@@ -506,8 +506,8 @@ def testa_lista():
         L.append(random.randint(1, 50))
     
     ret = input('Deseja ordenar a lista de forma crescente?[S/n]')
-    if ret == 'S':
-        return crescente(L)
-    else:
+    if ret != 'S':
         return decrescente(L)
+    else:
+        return crescente(L)
 print(testa_lista())
