@@ -467,3 +467,16 @@ def min_max2(min:int,max:int):
     else:
         return N
 print(min_max2(2,5))
+#8. Escreva uma função que receba uma lista como parâmetro de entrada e retorne uma tupla contendo quatro valores na seguinte ordem: a soma, a média, o menor e o maior valor dentre todos os elementos nela contidos. Considere que nessa lista ocorram apenas números reais. Escreva um programa para testar essa função, exibindo na tela os resultados. Neste exercício, evite utilizar as funções prontas existentes no Python, como sum, min e max.
+def retorna_tupla(L:list):
+    soma,media,menor,maior = 0, 0, L[0], L[0]
+
+    for index in L:
+        soma += index
+        if index < menor:
+            menor = index
+        if index > maior:
+            maior = index
+
+    return (soma,media,menor,maior)
+print(retorna_tupla([2,3,4,5,6]))
