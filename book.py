@@ -457,3 +457,13 @@ def base_7(N:int):
         ret += index * int(digito)
     return ret % 7
 print(base_7(21853))
+#7. Escreva uma função que receba como parâmetro de entrada dois números reais Min e Max. Essa função deve ler do teclado um número real e retorná-lo caso esteja dentro do intervalo fechado [Min, Max]. Caso contrário, a função deve exibir uma mensagem de erro e ler um novo valor.
+#Não faço ideia do pq o N dps de digitar um valor errado retorna none.
+def min_max2(min:int,max:int):
+    N = int(input('Digite um número'))
+    if N > max or N < min:
+        print('erro')
+        min_max2(min,max)
+    else:
+        return N
+print(min_max2(2,5))
