@@ -431,3 +431,16 @@ def divide(A, B):
         return 1
     return 0
 print(divide(5,2))
+#4. Escreva uma função que receba um número inteiro N e retorne uma lista com os bits 0 e 1, que representam N convertido para binário. Não use nenhuma função Python de conversão para binários. Em vez disso, elabore uma lógica baseada no processo de divisões sucessivas.
+def converte_binario(N:int):
+    if N == 0:
+        return [0]
+
+    bits = []
+
+    while N > 0:
+        bits += [N % 2]
+        N = N // 2
+
+    return bits
+print(converte_binario(5))
