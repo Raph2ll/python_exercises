@@ -492,3 +492,22 @@ def nao_contem(L1:int,L2:int):
             L.append(index)
     return L
 print(nao_contem([2,2,2,2,2,3,4,5], [6,6,6,6,6,3,4,5]))
+#11. Escreva uma função que receba como parâmetro de entrada uma lista L e retorne uma lista organizada em ordem crescente. Para fazer a ordenação, use o Algoritmo de Ordenação Bolha (Bubble Sort). Crie uma segunda versão dessa função que retorne uma lista organizada em ordem decrescente.
+def crescente(L:list):
+    return sorted(L)
+def decrescente(L:list):
+    return sorted(L, reverse=True)
+# Escreva um programa para testar essas duas funções. Esse programa deve ler um número inteiro N e gerar uma lista com N números inteiros aleatórios utilizando a função randint(). Use as duas funções de ordenação e exiba na tela as listas ordenadas crescente e decrescente.
+#random
+def testa_lista():
+    size = input('Insira o tamanho da lista')
+    L = []
+    for _ in range(size):
+        L.append(random.randint(1, 50))
+    
+    ret = input('Deseja ordenar a lista de forma crescente?[S/n]')
+    if ret == 'S':
+        return crescente(L)
+    else:
+        return decrescente(L)
+print(testa_lista())
