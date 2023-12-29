@@ -484,3 +484,11 @@ print(retorna_tupla([2,3,4,5,6]))
 def recebe_lista(L:list):
     return list(set(L))
 print(recebe_lista([2,2,2,3,4,5]))
+#10. Escreva uma função que receba duas listas L1 e L2 como parâmetro de entrada e retorne uma lista contendo todos os elementos de L1 que não estão em L2. Escreva um programa para testar essa função.
+def nao_contem(L1:int,L2:int):
+    L = []
+    for index in L1:
+        if index not in L2:
+            L.append(index)
+    return L
+print(nao_contem([2,2,2,2,2,3,4,5], [6,6,6,6,6,3,4,5]))
