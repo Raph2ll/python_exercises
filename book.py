@@ -425,3 +425,9 @@ def numeros_primos(N, L):
                 break
     return ret
 print(numeros_primos(5, [2, 2, 2, 2, 2, 2, 3, 2, 2, 2]))
+#3. Escreva uma função que receba dois números inteiros A e B como parâmetros de entrada e retorne 1 se A for divisível por B e 0 caso contrário.
+def divide(A, B):
+    if A % B == 0:
+        return 1
+    return 0
+print(divide(5,2))
