@@ -522,3 +522,11 @@ def fubonacci(Q:int):
             L.append(L[I] + L[I + 1])
         return L
 print(fubonacci(10))
+#13. Dada uma lista contendo números inteiros, escreva uma funçãorecursiva para calcular a multiplicação de todos os elementos. Exiba o resultado na tela.
+def multiplica(L: list):
+    if not L:
+        return 1
+    else:
+        return L[0] * multiplica(L[1:])
+
+print(multiplica([2, 3, 4, 5, 6]))
