@@ -512,16 +512,23 @@ def testa_lista():
         return crescente(L)
 print(testa_lista())
 #12. Escreva um programa que leia um número inteiro Q e exiba na telaos Q primeiros termos da sequência de Fibonacci, utilizando umafunção recursiva para determinar o elemento da sequência a serexibido. A sequência de Fibonacci, já vista nos Exercícios resolvidos3.7 e 4.7, caracteriza-se por um termo ser a soma dos dois anteriores,sendo que os dois primeiros termos são 0 e 1. Assim, os dez primeirostermos são: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34.
-def fubonacci(Q:int):
-    L = [0, 1]
-    for index in range(Q):
-        IN = int(Q)
-        if (IN) < 2:
-            print("Digite um número maior que 2")
-        for I in range(IN):
-            L.append(L[I] + L[I + 1])
+def fibonacci(Q: int, L=None):
+    if L is None:
+        L = [0, 1]
+    if Q <= 0:
+        return []
+    elif Q == 1:
+        return [0]
+    elif Q == 2:
         return L
-print(fubonacci(10))
+    else:
+        L.append(L[-1] + L[-2])
+        return fibonacci(Q - 1, L)
+
+Q = int(input("Digite o número de termos da sequência de Fibonacci: "))
+result = fibonacci(Q)
+print(result)
+
 #13. Dada uma lista contendo números inteiros, escreva uma funçãorecursiva para calcular a multiplicação de todos os elementos. Exiba o resultado na tela.
 def multiplica(L: list):
     if not L:
