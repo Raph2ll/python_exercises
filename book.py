@@ -537,3 +537,21 @@ def multiplica(L: list):
         return L[0] * multiplica(L[1:])
 
 print(multiplica([2, 3, 4, 5, 6]))
+
+#14. Faça uma pesquisa sobre o Algoritmo de Ordenação Quicksort. Implemente uma função recursiva que use esse algoritmo para organizar a lista L de forma crescente. Escreva um programa para testar a função.
+def quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[0]
+        less = [x for x in arr[1:] if x <= pivot]
+        greater = [x for x in arr[1:] if x > pivot]
+        return quicksort(less) + [pivot] + quicksort(greater)
+
+def test_quicksort():
+    test_list = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+    sorted_list = quicksort(test_list)
+    print("Lista Original:", test_list)
+    print("Lista Organizada:", sorted_list)
+
+print(test_quicksort())
