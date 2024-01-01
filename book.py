@@ -1,5 +1,6 @@
 # Atvidades do Livro do Sérgio Luiz Banin, "Python3: Conceitos e aplicações"
 import random
+import time
 #4.1 Escreva um programa que leia um string que deve conter,obrigatoriamente, um número inteiro e, caso isso não aconteça, emita uma mensagem de erro.
 def validando_entrada_numerica(num1:int):
     if num1.isnumeric():
@@ -555,3 +556,38 @@ def test_quicksort():
     print("Lista Organizada:", sorted_list)
 
 print(test_quicksort())
+#15. Escreva um programa que contenha duas funções de ordenaçãodiferentes: uma que implemente o algoritmo Bubble Sort (criada noExercício 11) e outra que implemente o algoritmo Quicksort (criada no Exercício 14). Escreva um programa que gere uma lista com um tamanho bem grande e utilize-a para testar o desempenho das duas funções.
+#random
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(f"A função {func.__name__} levou {elapsed_time:.6f} segundos para ser executada.")
+        return result
+    return wrapper
+
+
+@timing_decorator
+def quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[0]
+        less = [x for x in arr[1:] if x <= pivot]
+        greater = [x for x in arr[1:] if x > pivot]
+        return quicksort(less) + [pivot] + quicksort(greater)
+
+@timing_decorator 
+def crescente(L:list):
+    return sorted(L)
+# Faça esse programa gerar a lista grande contendo Q elementos, na qual Q é digitado pelo usuário.
+def gera_lista(size:int):
+    L = []
+    for _ in range(size):
+        L.append(random.randint(1, 100))
+    return L
+# Esse valor de Q deve ser bem grande, por exemplo, de 10 a 50 mil elementos, ou mais, dependendo da capacidade de seu computador.
+quicksort(gera_lista(8000))
+crescente(gera_lista(8000))
