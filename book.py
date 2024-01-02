@@ -582,13 +582,13 @@ def quicksort(arr):
 @timing_decorator 
 def crescente(L:list):
     return sorted(L)
-# Faça esse programa gerar a lista grande contendo Q elementos, na qual Q é digitado pelo usuário.
+#Faça esse programa gerar a lista grande contendo Q elementos, na qual Q é digitado pelo usuário.
 def gera_lista(size:int):
     L = []
     for _ in range(size):
         L.append(random.randint(1, 100))
     return L
-# Esse valor de Q deve ser bem grande, por exemplo, de 10 a 50 mil elementos, ou mais, dependendo da capacidade de seu computador.
+#Esse valor de Q deve ser bem grande, por exemplo, de 10 a 50 mil elementos, ou mais, dependendo da capacidade de seu computador.
 quicksort(gera_lista(8000))
 crescente(gera_lista(8000))
 #6.1 Escreva um programa que leia do teclado dois conjuntos de números inteiros digitados pelo usuário. Exiba na tela a união e a interseção desses conjuntos. Nessa solução, os conjuntos C1 e C2 foram carregados com os valores lidos do teclado, e ao término os operadores união (|) e interseção (&) foram utilizados para produzir o resultado pedido.
@@ -603,3 +603,15 @@ def C1_C2():
         C2.add(N2)
     return f'União entre C1 e C2: {C1 | C2}, Interseção: {C1 & C2}'
 print(C1_C2())
+#6.2 Considere que todos os valores no intervalo fechado [1, 30] devam serdivididos em dois grupos, A e B, de 15 valores cada, de maneira aleatória. Éimportante que um valor que está em A não esteja em B, e vice-versa, bem como que todos os valores do intervalo estejam em algum grupo. Escreva um programa que use os recursos de conjuntos para atingir esse resultado.
+#random
+def A_B():
+    A, B = set(), set()
+    while len(A) < 15:
+        A.add(random.randint(1, 30))
+    while len(B) < 15:
+        N = random.randint(1,30)
+        if N not in A:
+            B.add(N)
+    return A, B
+print(A_B())
