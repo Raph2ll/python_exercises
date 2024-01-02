@@ -591,3 +591,15 @@ def gera_lista(size:int):
 # Esse valor de Q deve ser bem grande, por exemplo, de 10 a 50 mil elementos, ou mais, dependendo da capacidade de seu computador.
 quicksort(gera_lista(8000))
 crescente(gera_lista(8000))
+#6.1 Escreva um programa que leia do teclado dois conjuntos de números inteiros digitados pelo usuário. Exiba na tela a união e a interseção desses conjuntos. Nessa solução, os conjuntos C1 e C2 foram carregados com os valores lidos do teclado, e ao término os operadores união (|) e interseção (&) foram utilizados para produzir o resultado pedido.
+def C1_C2():
+    C1, C2 = set(), set()
+    N1 , N2 = 1, 1
+    while N1 != 0:
+        N1 = int(input('Digite um valor para C1'))
+        C1.add(N1)
+    while N2 != 0:
+        N2 = int(input('Digite um valor para C2'))
+        C2.add(N2)
+    return f'União entre C1 e C2: {C1 | C2}, Interseção: {C1 & C2}'
+print(C1_C2())
