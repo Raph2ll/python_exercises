@@ -631,3 +631,27 @@ def dicionario():
         
     return pecas
 print(dicionario())
+#6.4 Escreva um programa que permaneça em laço efetuando a leitura dos seguintes dados: número de matrícula, nome do aluno, idade e curso. O número de matrícula é a chave, e os demais dados constituem o valor. Faça a leitura desses dados e construa o dicionário enquanto não for digitado zero para o número de matrícula. Nesse problema, têm-se múltiplos dados como valor para cada membro do dicionário, sendo necessário agrupá-los de alguma maneira. Para esse agrupamento pode-se utilizar uma lista, uma tupla, um conjunto ou outro dicionário aninhado. No Exercício resolvido 6.4 será apresentada, inicialmente, uma solução na qual se utiliza uma tupla. No final apresenta-se a mudança necessária para utilizar lista no lugar da tupla e discute-se um pouco sobre a escolha de uma ou outra alternativa. No Exercício resolvido 6.5 será apresentada uma solução com dicionários aninhados. Assim, nesta primeira solução a tupla será organizada de modo que seu primeiro elemento seja o Nome, o segundo seja a Idade e o terceiro seja o Curso do aluno. Veja o código do programa a seguir.
+def aluno():
+    Alunos = {}
+    while True:
+        matr = int(input('Digite o número da matricula'))
+        if matr == 0:
+            break
+        elif matr in Alunos:
+            print(f'A matricula {matr} já está no cadastro')
+            continue
+        nome = input('Nome: ')
+        idade = input('Idade: ')
+        curso = input('Curso: ')
+        Alunos[matr] = (nome, idade, curso)
+    #return Alunos
+    print('Fim da leitura dos dados\n')
+    print('Cadastro de Alunos') # 2ª parte – apresentação dos dados
+    for matricula, dados in Alunos.items():
+        print(f'Aluno {nome}')
+        print(f'Matricula {matr}')
+        print(f'Idade {idade}')
+        print(f'Curso {curso}')
+        print('\nFim do programa')
+aluno()
