@@ -673,11 +673,11 @@ def aluno():
         Alunos[matr] = dicItem 
     #return Alunos
     print('Fim da leitura dos dados\n')
-    print('Cadastro de Alunos') # 2ª parte – apresentação dos dados
+    print('Cadastro de Alunos') 
     for matricula, dados in Alunos.items():
-        print(f'Aluno {nome}')
-        print(f'Matricula {matr}')
-        print(f'Idade {idade}')
-        print(f'Curso {curso}')
+        print(f'Aluno {dados["nome"]}')
+        print(f'Matricula {matricula}')
+        print(f'Idade {dados["idade"]}')
+        print(f'Curso {dados["curso"]}')
         print('\nFim do programa')
 aluno()
