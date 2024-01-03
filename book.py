@@ -726,4 +726,18 @@ def N_A_B():
     return A, B
 
 print(N_A_B())
+#3. Escreva um programa que permaneça em laço lendo números inteiros do teclado. Esse laço termina quando for digitado zero ou qualquer valor negativo. O programa deve contar quantas vezes cada valor positivo foi digitado. Ao término do laço de leitura o programa deve mostrar quais valores foram digitados e quantas vezes cada um. Use um dicionário para resolver esse problema.
+def dicionario():
+    N, ret = 1, dict()
 
+    while N != 0:
+        N = int(input('Digite um número: '))
+        
+        if N in ret:
+            ret[N] += 1
+        else:
+            ret[N] = 1
+
+    return ret
+
+print(dicionario())
