@@ -741,3 +741,22 @@ def dicionario():
     return ret
 
 print(dicionario())
+#4. Considere o seguinte conjunto de dados: Nome + (N1, N2, N3, N4). Nome representa o nome de um aluno e deve ser usado como chave. N1, N2, N3, N4 representam as notas de provas desse aluno. Escreva um programa que leia os dados de Q alunos e apresente na tela se foram aprovados ou reprovados. O critério que garante a aprovação é que a média aritmética das 4 notas seja maior ou igual 6,0. Q é a quantidade de alunos, e esse valor deve ser lido do teclado no começo do programa. As notas devem ser exibidas com uma casa decimal.
+def notas():
+    dic = dict()
+    while True:
+        name = str(input('Digite um nome para o aluno: '))
+        if name == '0':
+            break
+        N1 = int(input('Digite a primeira nota: '))
+        N2 = int(input('Digite a segunda nota: '))
+        N3 = int(input('Digite a terceira nota: '))
+        N4 = int(input('Digite a quarta nota: '))
+        dic[name] = [N1, N2, N3, N4]
+    for key, value in dic.items():
+        if (sum(value) / 4) == 6.0:
+            print(f'Aluno:{key}, foi aprovado')
+        else: 
+            print(f'Aluno:{key}, foi reprovado')
+    return dic
+print(notas())
