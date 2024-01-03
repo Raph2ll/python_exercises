@@ -681,3 +681,22 @@ def aluno():
         print(f'Curso {dados["curso"]}')
         print('\nFim do programa')
 aluno()
+#1. Escreva um programa que leia do teclado dois conjuntos de nomes de frutas. Em seguida, apresente na tela a união (operador | ), a interseção (&) e a diferença simétrica (^). Utilizando a função len, verifique qual dos conjuntos tem mais elementos e apresente a diferença entre o maior e o menor (–).
+def duas_frutas():
+    frutas1, frutas2 = set(), set()
+    N1 , N2 = 1, 1
+    while N1 != 0:
+        N1 = str(input('Digite o nome de uma fruta[1]'))
+        frutas1.add(N1)
+    while N2 != 0:
+        N2 = str(input('Digite o nome de uma fruta[2]'))
+        frutas2.add(N2)
+    print(f'União entre os conjuntos: {frutas1 | frutas2}')
+    print(f'Interseção entre os conjuntos: {frutas1 & frutas2} ')
+    print(f'Diferença simétrica entre os conjuntos: {frutas1 ^ frutas2}')
+    print(f'União entre os conjuntos: {frutas1 | frutas2}')
+    if len(frutas1) > len(frutas2):
+        print (f'Diferença entre os conjuntos: {frutas1 - frutas2}')
+    else: 
+        print (f'Diferença entre os conjuntos: {frutas2 - frutas1}')
+print(duas_frutas())
