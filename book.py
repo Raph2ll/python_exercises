@@ -705,3 +705,25 @@ def duas_frutas():
     else: 
         print (f'Diferença entre os conjuntos: {frutas2 - frutas1}')
 print(duas_frutas())
+#2. Altere o programa do Exercício resolvido 6.2 da seguinte maneira: leia um número inteiro N (N < 30) e faça que o conjunto A tenha tamanho N e o conjunto B tenha tamanho 30-N.
+#random
+def N_A_B():
+    A, B = set(), set()
+    
+    N = int(input('Digite um número inteiro maior que 1 e menor que 30: '))
+
+    while N <= 1 or N >= 30:
+        N = int(input('Digite um número inteiro maior que 1 e menor que 30: '))
+
+    while len(A) < N:
+        A.add(random.randint(1, 30))
+    ret = 30 - N
+    while len(B) < ret:
+        num = random.randint(1, 30)
+        if num not in A:
+            B.add(num)
+
+    return A, B
+
+print(N_A_B())
+
