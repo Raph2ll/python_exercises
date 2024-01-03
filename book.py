@@ -685,12 +685,17 @@ aluno()
 def duas_frutas():
     frutas1, frutas2 = set(), set()
     N1 , N2 = 1, 1
-    while N1 != 0:
+    while N1 != '0':
         N1 = str(input('Digite o nome de uma fruta[1]'))
+        if N1 == '0':
+            continue
         frutas1.add(N1)
-    while N2 != 0:
+    while N2 != '0':
         N2 = str(input('Digite o nome de uma fruta[2]'))
+        if N2 == '0':
+            continue
         frutas2.add(N2)
+    print(frutas1, frutas2)
     print(f'União entre os conjuntos: {frutas1 | frutas2}')
     print(f'Interseção entre os conjuntos: {frutas1 & frutas2} ')
     print(f'Diferença simétrica entre os conjuntos: {frutas1 ^ frutas2}')
