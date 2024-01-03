@@ -656,3 +656,28 @@ def aluno():
         print(f'Curso {curso}')
         print('\nFim do programa')
 aluno()
+#6.5 Nessa segunda solução nada muda com relação ao número de matrícula, aopasso que os dados passam a ser armazenados em um dicionário aninhado aodicionário Alunos.
+def aluno():
+    Alunos = {}
+    while True:
+        matr = int(input('Digite o número da matricula'))
+        if matr == 0:
+            break
+        elif matr in Alunos:
+            print(f'A matricula {matr} já está no cadastro')
+            continue
+        dicItem = {}
+        dicItem['nome'] = input(' Nome: ')
+        dicItem['idade'] = int(input(' Idade: ')) 
+        dicItem['curso'] = input(' Curso: ')
+        Alunos[matr] = dicItem 
+    #return Alunos
+    print('Fim da leitura dos dados\n')
+    print('Cadastro de Alunos') # 2ª parte – apresentação dos dados
+    for matricula, dados in Alunos.items():
+        print(f'Aluno {nome}')
+        print(f'Matricula {matr}')
+        print(f'Idade {idade}')
+        print(f'Curso {curso}')
+        print('\nFim do programa')
+aluno()
