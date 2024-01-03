@@ -645,7 +645,7 @@ def aluno():
         idade = input('Idade: ')
         curso = input('Curso: ')
         Alunos[matr] = (nome, idade, curso)
-        Alunos[matr] = [nome, idade, curso]
+        #Alunos[matr] = [nome, idade, curso]
     #return Alunos
     print('Fim da leitura dos dados\n')
     print('Cadastro de Alunos') # 2ª parte – apresentação dos dados
