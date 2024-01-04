@@ -760,3 +760,22 @@ def notas():
             print(f'Aluno:{key}, foi reprovado')
     return dic
 print(notas())
+#5. Refaça o exercício 4 alterando o critério de aprovação para o seguinte: das quatro notas, despreze a menor e calcule a média aritmética das outras três. Será considerado aprovado o aluno que tiver essa média maior ou igual a 6,0.
+def notas2():
+    dic = dict()
+    while True:
+        name = str(input('Digite um nome para o aluno: '))
+        if name == '0':
+            break
+        N1 = int(input('Digite a primeira nota: '))
+        N2 = int(input('Digite a segunda nota: '))
+        N3 = int(input('Digite a terceira nota: '))
+        N4 = int(input('Digite a quarta nota: '))
+        dic[name] = [N1, N2, N3, N4]
+    for key, value in dic.items():
+        if (sum(value) - min(value) / 3) <= 6.0:
+            print(f'Aluno:{key}, foi aprovado')
+        else: 
+            print(f'Aluno:{key}, foi reprovado')
+    return dic
+print(notas2())
