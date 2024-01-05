@@ -824,3 +824,20 @@ def arquivo_real2():
     arq.writelines(L)
     arq.close()
 print(arquivo_real2())
+#7.2a Escreva um programa que leia um arquivo texto contendo um número inteiro em cada linha. Exiba na tela e faça a totalização dos valores lidos. Esse exercício será resolvido de duas maneiras diferentes. Na primeira, Exercício resolvido 7.2a, será utilizado um laço while. A leitura da primeira linha do arquivo é feita fora do laço. Caso seu retorno seja diferente de string vazio, o laço é iniciado e prosseguirá até que o final do arquivo seja alcançado. O método readline retorna um string vazio quando a leitura do arquivo chega ao final. A cada repetição do laço o string lido é convertido para inteiro e totalizado no objeto Soma.
+def le_arquivo():
+    arq, soma = open('./exemplo.txt', 'r'), 0
+    S = arq.readline()
+    while S != '':
+        soma += int(S)
+        S = arq.readline()
+    arq.close()
+    return soma
+print(le_arquivo())
+#7.2b Essa solução funcionará perfeitamente, porém, existe outra solução bem melhor no que diz respeito ao uso dos recursos da linguagem Python. O Exercício resolvido 7.2b mostra essa outra solução, na qual foi utilizado o conceito de iterador de arquivo (file iterator).
+def le_arquivo2():
+    arq, soma = open('./exemplo.txt', 'r'), 0
+    for S in arq:
+        soma += int(S)
+    arq.close()
+    return soma
