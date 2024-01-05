@@ -803,3 +803,24 @@ def telefone():
     return contatos
 
 print(telefone())
+#7.1a Escreva um programa que permaneça em laço lendo números reais até que seja digitado 0. Todos os valores digitados, exceto o zero, devem ser gravados em um arquivo em disco, um por linha, com três casas decimais.
+def arquivo_real():
+    arq = open('exemplo.txt', 'w')
+    while True:
+        N = int(input('Digite um número'))
+        if N == 0:
+            break
+        arq.write(f'{N}\n')
+    arq.close()
+print(arquivo_real())
+#7.1b Serão criadas duas soluções para esse exercício. Na primeira será utilizado o método write, e na segunda será utilizado o método writelines.
+def arquivo_real2():
+    arq, L = open('exemplo.txt', 'w'), []
+    while True:
+        N = int(input('Digite um número'))
+        if N == 0:
+            break
+        L.append(f'{N}\n')
+    arq.writelines(L)
+    arq.close()
+print(arquivo_real2())
