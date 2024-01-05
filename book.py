@@ -841,3 +841,15 @@ def le_arquivo2():
         soma += int(S)
     arq.close()
     return soma
+print(le_arquivo2())
+#7.3 Escreva um programa que leia um arquivo texto que contém diversas linhas que representam uma lista de compras. Em cada linha há três informações: nome de um produto, quantidade e preço unitário, separados pelo caractere “;”. Pede-se que cada item da lista seja exibido na tela, incluindo o valor total do item. Ao final, exiba o total da compra.
+def le_csv():
+    L, ret = [], 0
+    for S in open('exemplo.csv', 'r'):
+        S.rstrip()
+        L = S.split(',')
+        L[1],L[2] = int(L[1]), float(L[2])
+        print(f'{L[0]}: {L[1]} x {L[2]} = {L[1]*L[2]}')
+        ret += L[1]*L[2]
+    return ret
+print(le_csv())
