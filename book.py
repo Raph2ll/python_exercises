@@ -877,3 +877,30 @@ def estoque_csv():
     arq.close()
     return 'Estoque criado com sucesso'
 print(estoque_csv())
+#7.5 Escreva um programa que leia um arquivo com o layout especificado no Quadro 7.3 e apresente os seguintes resultados:
+#valor total das mercadorias em estoque;
+#valor total do imposto ICMS pago referente a essas mercadorias.
+def le_estoque_csv():
+    L = []
+    valorTotal = 0
+    valorTotalICMS = 0
+    print('Produto Val.Compra ICMS Mercadoria')
+    with open('estoque.csv', 'r') as arquivo:
+        linhas = arquivo.readlines()
+        for S in linhas:
+            S.rstrip()
+            L = S.split(';')
+            L[0] = int(L[0])
+            L[1] = int(L[1])
+            L[2] = float(L[2])
+            L[3] = float(L[3])/100
+            compra = L[1] * L[2]
+            icms = compra * L[3]
+            merc = compra - icms
+            valorTotalICMS += icms
+            valorTotal += merc
+            print(f'{L[0]}, {compra:.2f}, {icms:.2f}, {merc:.2f}')
+
+    return f'Totais: {valorTotal + valorTotalICMS}, {valorTotal:.2f}, {valorTotalICMS:.2f}'
+print(le_estoque_csv())
+            
