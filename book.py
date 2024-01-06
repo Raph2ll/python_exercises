@@ -853,3 +853,27 @@ def le_csv():
         ret += L[1]*L[2]
     return ret
 print(le_csv())
+#7.4  Escreva um programa que leia um número inteiro N (10 < N < 10.000) e grave um arquivo com N linhas com os dados listados na tabela seguinte. O arquivo deve ter o nome “Estoque.csv” e deve usar o caractere “;” (ponto e vírgula) como delimitador. Não é necessário que o arquivo esteja ordenado.
+#random
+def estoque_csv():
+    arq = open('estoque.csv', 'w')
+    cproduto = 0
+    while True:
+            N = int(input('Digite um valor para N: '))
+            if 10 < N < 10000:
+                break
+            else:
+                print('Digite um valor entre 10 e 10.000')
+    with open('estoque.csv', 'r') as arquivo:
+        linhas = arquivo.readlines()
+        while cproduto <= N:
+            linhas = arquivo.readlines()
+            cproduto += 1
+            quantidade = random.randint(1, 3800)
+            estoque = random.randint(0, 2500)
+            preco = random.uniform(1.80, 435.90)
+            aliquota = random.choice([7,12,18])
+            arq.write(f'{cproduto};{quantidade};{estoque};{preco:.2f};{aliquota}\n')
+    arq.close()
+    return 'Estoque criado com sucesso'
+print(estoque_csv())
