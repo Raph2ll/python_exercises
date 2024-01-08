@@ -960,3 +960,17 @@ def escreve_txt():
         arq.write(f'{random.randint(1,100.000)}\n')
     arq.close
 print(escreve_txt())
+#3.  Escreva um programa que leia o arquivo NUMEROS.TXT gerado no Exercício 2, colocando-os em uma lista. Ordene a lista utilizando o método Bubble Sort e grave os números ordenados no arquivo “ORDENADOS.TXT”. Não use funções prontas de ordenação e recorra ao Exercício resolvido 4.11 para se lembrar do algoritmo Bubble Sort
+def ordenados_txt():
+    with open('NUMEROS.txt', 'r') as arq_entrada:
+        L = [int(line.rstrip()) for line in arq_entrada]
+    n = len(L)
+    for _ in range(n):
+        for i in range(n - 1):
+            if L[i] > L[i+1]:
+                L[i], L[i+1] = L[i+1], L[i]
+    with open('ORDENADOS.txt', 'w') as arq_saida:
+        for elemento in L:
+            arq_saida.write(f'{elemento}\n')
+    return L
+print(ordenados_txt())
