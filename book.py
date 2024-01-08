@@ -952,3 +952,11 @@ def le_e_grava(numero:int):
         if is_primo:
             arq.write(f'{N}\n')
 print(le_e_grava(100))
+#2. Escreva um programa que grave o arquivo NUMEROS.TXT com 2000 números, um em cada linha, gerados com a função randint no intervalo fechado [1, 100.000].
+#random
+def escreve_txt():
+    arq = open('NUMEROS.txt', 'w')
+    for _ in range(2000):
+        arq.write(f'{random.randint(1,100.000)}\n')
+    arq.close
+print(escreve_txt())
