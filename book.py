@@ -941,11 +941,17 @@ def GravaLe(grava, le):
                 GravaLe('ANSI', 'UTF-8')
                 print('Fim do Programa')
 #1. Escreva um programa que leia um número inteiro N e grave em um arquivo em disco todos os números primos existentes no intervalo fechado [2, N], um número em cada linha. Sugestão: use uma função para determinar se o número é primo (veja o Exercício resolvido 5.1)
-def le_e_grava(numero: int):
-    with open('exemplo.txt', 'w') as arq:
-        for N in range(2, numero):
+def le_e_grava(numero:int):
+    arq = open('exemplo.txt', 'w')
+    for N in range(2, numero):
+        is_primo = True
+        for i in range(2, int(N**0.5) + 1):
+            if N % i == 0:
+                is_primo = False
+                break
+        if is_primo:
             arq.write(f'{N}\n')
-le_e_grava(100)
+print(le_e_grava(100))
 #2. Escreva um programa que grave o arquivo NUMEROS.TXT com 2000 números, um em cada linha, gerados com a função randint no intervalo fechado [1, 100.000].
 #random
 def escreve_txt():
