@@ -974,3 +974,26 @@ def ordenados_txt():
             arq_saida.write(f'{elemento}\n')
     return L
 print(ordenados_txt())
+#4. Repita o exercício anterior trocando o método de ordenação, para o método recursivo Quicksort (faça uma pesquisa sobre esse algoritmo). O Quicksort é um algoritmo consideravelmente mais veloz, na maioria dos casos, que o Bubble Sort. Use os programas 3 e 4 para constatar esse fato.
+def quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[len(arr) // 2]
+        less = [x for x in arr if x < pivot]
+        equal = [x for x in arr if x == pivot]
+        greater = [x for x in arr if x > pivot]
+        return quicksort(less) + equal + quicksort(greater)
+def ordenados_txt():
+    with open('NUMEROS.txt', 'r') as arq_entrada:
+        L = [int(line.rstrip()) for line in arq_entrada]
+
+    sorted_list = quicksort(L)
+
+    with open('ORDENADOS.txt', 'w') as arq_saida:
+        for elemento in sorted_list:
+            arq_saida.write(f'{elemento}\n')
+
+    return sorted_list
+
+print(ordenados_txt())
