@@ -997,3 +997,40 @@ def ordenados_txt():
     return sorted_list
 
 print(ordenados_txt())
+#5. Escreva um programa que leia um arquivo texto de entrada contendo os salários brutos dos funcionários de uma empresa e grave um arquivo de saída com os cálculos solicitados e descritos a seguir. O arquivo de entrada deve ter o nome “salario.txt” e conterá um valor em cada linha, sendo que, na primeira linha, estará escrito o título “Bruto”. Para cada salário devem ser calculados os descontos de INSS (previdência social), IR (imposto de renda) e salário líquido.
+def salario_txt():
+    with open('salario.txt', 'r') as arq_entrada:
+        L = [int(line.rstrip()) for line in arq_entrada]
+    with open('resultado.txt', 'w') as arq_saida:
+        for S in L:
+            SalBruto = S
+
+            if SalBruto < 1556.94:
+                AliqINSS = 8
+            elif SalBruto < 2594.92:
+                AliqINSS = 9
+            elif SalBruto < 5189.82:
+                AliqINSS = 11
+            else: 
+                AliqINSS = 'Teto'
+            
+            ValINSS = SalBruto * AliqINSS
+            AliqIR = SalBruto - ValINSS
+
+            if AliqIR < 1903.98:
+                DeducaoIR = 0.00
+            elif AliqIR < 2826.65:
+                DeducaoIR = 142.80
+            elif AliqIR < 3751.05:
+                DeducaoIR = 354.80
+            elif AliqIR < 4664.68:
+                DeducaoIR = 636.13
+            else:
+                DeducaoIR = 869.36
+            
+            VALIR =( SalBruto - ValINSS) * AliqIR - DeducaoIR
+            SalLiquido = SalBruto - ValINSS - VALIR
+
+            arq_saida.write(f'{SalBruto};{AliqINSS};{ValINSS};{AliqIR};{DeducaoIR};{VALIR};{SalLiquido}\n')
+
+salario_txt()
