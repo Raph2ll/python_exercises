@@ -1063,7 +1063,7 @@ def senha():
             with open('resenha.txt', 'w') as arq_saida:
                 for S in L:
                     numerico = random.randrange(10**(tamanhoSenha - 1), 10**tamanhoSenha)
-                    arq_saida.write(f'{S};{alfanumerico};')
+                    arq_saida.write(f'{S};{numerico};')
             break
         else:
             print('Digite 1 ou 2')
