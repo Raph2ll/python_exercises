@@ -1,6 +1,7 @@
 # Atvidades do Livro do Sérgio Luiz Banin, "Python3: Conceitos e aplicações"
 import random
 import time
+import string
 #4.1 Escreva um programa que leia um string que deve conter,obrigatoriamente, um número inteiro e, caso isso não aconteça, emita uma mensagem de erro.
 def validando_entrada_numerica(num1:int):
     if num1.isnumeric():
@@ -1034,3 +1035,36 @@ def salario_txt():
             arq_saida.write(f'{SalBruto};{AliqINSS};{ValINSS};{AliqIR};{DeducaoIR};{VALIR};{SalLiquido}\n')
 
 salario_txt()
+#6. Esse programa está baseado na leitura de um arquivo texto de entrada contendo números do registro de alunos. Esse arquivo deve ter o nome RA.TXT e conterá um RA em cada linha. Para cada número de RA presente no arquivo deve ser gerada uma senha, conforme as condições especificadas a seguir. Tanto o RA como a senha gerada devem ser gravados no arquivo de saída RASENHA.TXT, com o formato a seguir:
+#string
+#random
+def senha():
+    with open('RA.txt', 'r') as arq_entrada:
+        L = [int(line.rstrip()) for line in arq_entrada]
+    
+    while True:
+        tamanhoSenha = int(input('Digite o tamanho da senha desejada'))
+        if isinstance(tamanhoSenha, int):
+            break
+        elif tamanhoSenha < 0:
+            print('Digite um valor maior que 0')
+        else:
+            print('Digite um valor númerico')
+    while True:
+        tipoDeSenha = int(input('Qual será o tipo de senha a ser gerado ? numérica ou alfanumérica? [1,2]'))
+        if tipoDeSenha == 1:
+            with open('resenha.txt', 'w') as arq_saida:
+                for S in L:
+                    caracteres = string.ascii_letters + string.digits 
+                    alfanumerico = ''.join(random.choice(caracteres) for _ in range(tamanhoSenha))
+                    arq_saida.write(f'{S};{alfanumerico};')
+            break
+        elif tipoDeSenha == 2:
+            with open('resenha.txt', 'w') as arq_saida:
+                for S in L:
+                    numerico = random.randrange(10**(tamanhoSenha - 1), 10**tamanhoSenha)
+                    arq_saida.write(f'{S};{alfanumerico};')
+            break
+        else:
+            print('Digite 1 ou 2')
+print(senha())
