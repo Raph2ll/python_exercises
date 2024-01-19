@@ -2,6 +2,7 @@
 import random
 import time
 import string
+import sqlite3
 #4.1 Escreva um programa que leia um string que deve conter,obrigatoriamente, um número inteiro e, caso isso não aconteça, emita uma mensagem de erro.
 def validando_entrada_numerica(num1:int):
     if num1.isnumeric():
@@ -110,7 +111,7 @@ def busca_sequencial(N:int):
             print(f'{num1} não está na lista')
     return L
 print(busca_sequencial(20))
-#4.10 O algoritmo de busca binária é significativamente mais rápido que o de busca sequencial quando aplicado a grandes conjuntos de dados. Porém, ele requer que a lista esteja ordenada. A ideia básica implementada nesse algoritmo é verificar se o valor procurado “x” está na posição central da lista. Se estiver, então, o valor foi encontrado e o algoritmo termina. Caso não esteja e x seja menor que o valor central, então, a busca prossegue na metade à esquerda do centro; caso seja maior, a busca prossegue na metade à direita.
+#4.10 O algoritmo de busca binária é significativamente mais rápido que o de busca sequencial quando aplicado a grandes conjuntos de dados. Porém, ele requer que a lista esteja ordenada. A ideia básica implementada nesse algoritmo é verificar se o valor procurado 'x” está na posição central da lista. Se estiver, então, o valor foi encontrado e o algoritmo termina. Caso não esteja e x seja menor que o valor central, então, a busca prossegue na metade à esquerda do centro; caso seja maior, a busca prossegue na metade à direita.
 def busca_binaria(N: int):
     L = list(range(2, N + 1, 2))
     num1 = int(input('Digite um número'))
@@ -398,7 +399,7 @@ numero_alvo = 7
 
 print(busca_binaria_recursiva(lista_ordenada, numero_alvo, 0, len(lista_ordenada) - 1))
 #Exercícios propostos
-#1. Escreva uma função que recebe um número inteiro como parâmetro de entrada e retorna o texto “PAR” ou “ÍMPAR”
+#1. Escreva uma função que recebe um número inteiro como parâmetro de entrada e retorna o texto 'PAR” ou 'ÍMPAR”
 def par_impar(N:int):
     if N % 2 == 0:
         return 'PAR'
@@ -1068,6 +1069,33 @@ def senha():
         else:
             print('Digite 1 ou 2')
 print(senha())
+#8.1 Criando tabela academia.db
+def criaTabela():
+    conector = sqlite3.connect('academia.db')
+    cursor = conector.cursor()
+
+    # Criação da tabela
+    sql = '''
+    CREATE TABLE cadastro
+    (codigo INTEGER, nome TEXT, idade INTEGER)
+    '''
+    cursor.execute(sql)
+
+    # Inserção de dados
+    sql = '''
+    INSERT INTO cadastro
+    (codigo, nome, idade) VALUES (?, ?, ?)
+    '''
+    valores = (1284, 'Pedro de Oliveira', 32)
+    cursor.execute(sql, valores)
+
+    conector.commit()
+    cursor.close()
+    conector.close()
+
+    print('Abra a pasta do programa e veja se o arquivo está lá')
+    print('Fim do programa')
+print(criaTabela())
 #8.14 Escreva um programa para inserir novos alunos na tabela cadastro, usando o método executemany. Faça esse programa de modo que os dados dos alunos a serem inseridos no cadastro sejam lidos de um arquivo em disco, a exemplo do que foi feito no Exemplo 8.5. Será necessário criar esse arquivo para testar o programa. O Quadro 8.5 contém dados sugeridos para realizar os testes.
 import sqlite3
 conector = sqlite3.connect('academia.db')
