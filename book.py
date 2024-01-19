@@ -1068,3 +1068,38 @@ def senha():
         else:
             print('Digite 1 ou 2')
 print(senha())
+#8.14 Escreva um programa para inserir novos alunos na tabela cadastro, usando o método executemany. Faça esse programa de modo que os dados dos alunos a serem inseridos no cadastro sejam lidos de um arquivo em disco, a exemplo do que foi feito no Exemplo 8.5. Será necessário criar esse arquivo para testar o programa. O Quadro 8.5 contém dados sugeridos para realizar os testes.
+import sqlite3
+conector = sqlite3.connect('academia.db')
+cursor = conector.cursor()
+arq = open('PesoAltura.txt', 'r')
+L = arq.readlines()
+arq.close()
+sql = '''
+    create table cadastro
+    (id integer not NULL Primary Key,
+    codigo int, 
+    nome text,
+    idade integer,
+    curso integer,
+    dtingr date,
+    peso double,
+    altura double)
+'''
+
+cursor.execute(sql)
+print('\n ...tabela cadastro criada')
+
+
+
+sql = '''
+insert into cursos (codigo, nome, idade, curso, ingresso, peso, altura)
+values(?, ?, ?)
+'''
+for s in L:
+    d = s.rstrip()
+    d = d.split(';')
+    cursor.execute(sql, (d[0], d[1], d[2], d[3], d[4], d[5], d[6]))
+    conector.commit()
+    cursor.close()
+    conector.close()
