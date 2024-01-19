@@ -1096,25 +1096,28 @@ def criaTabela():
 
 print(criaTabela())
 #8.2.6 Agora, a tabela “Cadastro” tem diversos campos a mais do que tinha quando foi feito o Exemplo 8.2, que exibe em tela todos os seus registros. Adapte aquele exemplo para exibir a tabela ampliada com a formatação mostrada na Figura 8.12.
-import sqlite3 # linha 1
-conector = sqlite3.connect('academia.db') 
-cursor = conector.cursor() 
-sql = 'select * from cadastro' 
+#sqlite
+def selectCadastros():
+    conector = sqlite3.connect('academia.db') 
+    cursor = conector.cursor() 
+    sql = 'select * from cadastro' 
 
-cursor.execute(sql) 
-dados = cursor.fetchall() 
-cursor.close() 
-conector.close() 
-print('\nConsulta ao Banco de Dados ‘academia.db’ \n')
-print('Dados da tabela ‘cadastro’')
-print('-' * 35)
-print('{:7} {:15} {:16} {:17} {:18} {:19} {:20} '.format('Código', 'Nome', 'Idade', 'Curso', 'Data', 'Peso', 'Altura'))
-print('- ' * 18)
-for d in dados:
-    print('{:7} {:15} {:16} {:17} {:18} {:19} {:20} '.format(d[0], d[1], d[2], d[3], d[4], d[5], d[6]))
+    cursor.execute(sql) 
+    dados = cursor.fetchall() 
+    cursor.close() 
+    conector.close() 
+    print('\nConsulta ao Banco de Dados ‘academia.db’ \n')
+    print('Dados da tabela ‘cadastro’')
     print('-' * 35)
-    print('Encontrados {} registros'.format(len(dados)))
-    print('\n\nFim do programa')
+    print('{:7} {:15} {:16} {:17} {:18} {:19} {:20} '.format('Código', 'Nome', 'Idade', 'Curso', 'Data', 'Peso', 'Altura'))
+    print('- ' * 18)
+    for d in dados:
+        print('{:7} {:15} {:16} {:17} {:18} {:19} {:20} '.format(d[0], d[1], d[2], d[3], d[4], d[5], d[6]))
+        print('-' * 35)
+        print('Encontrados {} registros'.format(len(dados)))
+        print('\n\nFim do programa')
+
+print(tabelaCadastros())
 #8.14 Escreva um programa para inserir novos alunos na tabela cadastro, usando o método executemany. Faça esse programa de modo que os dados dos alunos a serem inseridos no cadastro sejam lidos de um arquivo em disco, a exemplo do que foi feito no Exemplo 8.5. Será necessário criar esse arquivo para testar o programa. O Quadro 8.5 contém dados sugeridos para realizar os testes.
 #sqlite
 conector = sqlite3.connect('academia.db')
