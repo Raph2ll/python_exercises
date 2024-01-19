@@ -3,6 +3,7 @@ import random
 import time
 import string
 import sqlite3
+from datetime import datetime
 #4.1 Escreva um programa que leia um string que deve conter,obrigatoriamente, um número inteiro e, caso isso não aconteça, emita uma mensagem de erro.
 def validando_entrada_numerica(num1:int):
     if num1.isnumeric():
@@ -1117,39 +1118,51 @@ def selectCadastros():
         print('Encontrados {} registros'.format(len(dados)))
         print('\n\nFim do programa')
 
-print(tabelaCadastros())
+print(selectCadastros())
 #8.14 Escreva um programa para inserir novos alunos na tabela cadastro, usando o método executemany. Faça esse programa de modo que os dados dos alunos a serem inseridos no cadastro sejam lidos de um arquivo em disco, a exemplo do que foi feito no Exemplo 8.5. Será necessário criar esse arquivo para testar o programa. O Quadro 8.5 contém dados sugeridos para realizar os testes.
 #sqlite
-conector = sqlite3.connect('academia.db')
-cursor = conector.cursor()
-arq = open('PesoAltura.txt', 'r')
-L = arq.readlines()
-arq.close()
-sql = '''
-    CREATE TABLE IF NOT EXIST cadastro
-    (id integer not NULL Primary Key,
-    codigo int, 
-    nome text,
-    idade integer,
-    curso integer,
-    dtingr date,
-    peso double,
-    altura double)
-'''
+#sqlite
+#date
+def ler_dados_arquivo(nome_arquivo):
+    with open(nome_arquivo, 'r') as arquivo:
+        linhas = arquivo.readlines()
+        dados = [linha.strip().split(';') for linha in linhas]
+    return dados
 
-cursor.execute(sql)
-print('\n ...tabela cadastro criada')
+def insertAlunos():
+    conector = sqlite3.connect('academia.db')
+    cursor = conector.cursor()
 
+    # Criar tabela se não existir
+    sql_criar_tabela = '''
+    CREATE TABLE IF NOT EXISTS cadastro (
+        id INTEGER PRIMARY KEY,
+        codigo INTEGER,
+        nome TEXT,
+        idade INTEGER,
+        curso INTEGER,
+        dtingr DATE,
+        peso REAL,
+        altura REAL
+    )
+    '''
+    cursor.execute(sql_criar_tabela)
 
+    # Ler dados do arquivo
+    arquivo_dados = 'alunos.txt'
+    dados_alunos = ler_dados_arquivo(arquivo_dados)
 
-sql = '''
-insert into cursos (codigo, nome, idade, curso, ingresso, peso, altura)
-values(?, ?, ?)
-'''
-for s in L:
-    d = s.rstrip()
-    d = d.split(';')
-    cursor.execute(sql, (d[0], d[1], d[2], d[3], d[4], d[5], d[6]))
+    # Converter a data para o formato ISO (YYYY-MM-DD)
+    dados_alunos = [[int(c) if i == 2 else datetime.strptime(c, '%d/%m/%Y') if i == 4 else float(c) if i in (3, 5, 6) else c for i, c in enumerate(linha)] for linha in dados_alunos]
+
+    # Inserir dados na tabela usando executemany
+    sql_inserir = 'INSERT INTO cadastro (codigo, nome, idade, curso, dtingr, peso, altura) VALUES (?, ?, ?, ?, ?, ?, ?)'
+    cursor.executemany(sql_inserir, dados_alunos)
+
+    # Commit e fechar a conexão
     conector.commit()
     cursor.close()
     conector.close()
+    print('Alunos inseridos com sucesso na tabela cadastro.')
+
+insertAlunos()
