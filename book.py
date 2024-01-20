@@ -1166,3 +1166,18 @@ def insertAlunos():
     print('Alunos inseridos com sucesso na tabela cadastro.')
 
 insertAlunos()
+#1. Escreva um programa que crie um banco de dados chamado “agenda.db”. Nesse BD deve existir uma tabela de contatos com os seguintes campos:
+def criaAgenda():
+    conector = sqlite3.connect('agenda.db')
+    cursor = conector.cursor()
+
+    sql_criar_tabela = '''
+    CREATE TABLE IF NOT EXISTS contatos (NumContato INTEGER PRIMARY KEY,Nome TEXT,Cel TEXT,Tel TEXT,Email TEXT,Aniver TEXT)
+    '''
+
+    cursor.execute(sql_criar_tabela)
+
+    conector.commit()
+    cursor.close()
+    conector.close()
+criaAgenda()
