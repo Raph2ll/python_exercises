@@ -1167,6 +1167,7 @@ def insertAlunos():
 
 insertAlunos()
 #1. Escreva um programa que crie um banco de dados chamado “agenda.db”. Nesse BD deve existir uma tabela de contatos com os seguintes campos:
+#sqlite
 def criaAgenda():
     conector = sqlite3.connect('agenda.db')
     cursor = conector.cursor()
@@ -1181,3 +1182,55 @@ def criaAgenda():
     cursor.close()
     conector.close()
 criaAgenda()
+#2. Escreva um programa que exiba a agenda o exercício 1 e permita efetuar as seguintes ações: cadastrar novas pessoas; alterar os telefones e o e-mail; excluir pessoas da agenda.
+#sqlite
+def inserirContato():
+    conector = sqlite3.connect('agenda.db')
+    cursor = conector.cursor()
+
+    sql_inserir = '''
+    INSERT INTO contatos
+    (Nome,Cel,Tel,Email,Aniver) VALUES (?,?,?,?,?)
+    '''
+
+    valores = [('rapha','999','999','raphael.ph2ll@gmail.com','26/12/2000')]
+
+    cursor.execute(sql_inserir, valores[0])
+
+    conector.commit()
+    cursor.close()
+    conector.close()
+
+def alterarContato():
+    conector = sqlite3.connect('agenda.db')
+    cursor = conector.cursor()
+
+
+    sql_alterar = '''
+    UPDATE contatos SET Tel= ?, Email = ? WHERE NumContato = ?    
+    '''
+
+    cursor.execute(sql_alterar,('666','jonhDoe@gmail.com',1))
+
+    conector.commit()
+    cursor.close()
+    conector.close()
+
+def deletarContato():
+    conector = sqlite3.connect('agenda.db')
+    cursor = conector.cursor()
+
+
+    sql_deletar = '''
+    DELETE FROM contatos WHERE NumContato = ?    
+    '''
+
+    cursor.execute(sql_deletar,('1'))
+
+    conector.commit()
+    cursor.close()
+    conector.close()
+
+inserirContato()
+alterarContato()
+deletarContato()
