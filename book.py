@@ -1235,6 +1235,7 @@ inserirContato()
 alterarContato()
 deletarContato()
 #3. Escreva um programa que crie um banco de dados chamado “musicas.db”. Esse BD deve conter três tabelas, mostradas a seguir
+#sqlite3
 def cria_musicas_db():
     conector = sqlite3.connect('musicas.db')
     cursor = conector.cursor()
@@ -1269,3 +1270,66 @@ def cria_musicas_db():
     cursor.close()
     conector.close()
 cria_musicas_db()
+#4. Escreva um programa que permita exibir, inserir, alterar e excluir músicas no banco de dados do exercício 3.
+#sqlite3
+def exibir_musicas():
+    conector = sqlite3.connect('musicas.db') 
+    cursor = conector.cursor()
+
+    sql_exibir = 'SELECT * FROM musicas' 
+
+    cursor.execute(sql_exibir)
+
+    conector.commit()
+    cursor.close()
+    conector.close()
+
+def inserir_musicas():
+    conector = sqlite3.connect('musicas.db')
+    cursor = conector.cursor()
+
+    sql_inserir = '''
+    INSERT INTO musicas
+    (nomemus,artista,album,ano,arquivo) VALUES(?,?,?,?,?)
+    '''
+
+    valores = [('cat','c418','Minecraft - Volume Alpha','2019','./cat.mp4')]
+
+    cursor.execute(sql_inserir, valores[0])
+
+    conector.commit()
+    cursor.close()
+    conector.close()
+
+def alterar_musica():
+    conector = sqlite3.connect('musicas.db') 
+    cursor = conector.cursor()
+
+    sql_alterar = '''
+    UPDATE musicas SET nomemus = ? WHERE nummusica = ?    
+    '''
+
+    cursor.execute(sql_alterar,('Subwoofer Lullaby',1))
+
+    conector.commit()
+    cursor.close()
+    conector.close()
+
+def excluir_musica():
+    conector = sqlite3.connect('musicas.db') 
+    cursor = conector.cursor()
+
+    sql_excluir= '''
+    DELETE FROM musicas WHERE nummusica = ?    
+    '''
+
+    cursor.execute(sql_excluir,('1'))
+
+    conector.commit()
+    cursor.close()
+    conector.close()
+
+excluir_musica()
+alterar_musica()
+inserir_musicas()
+exibir_musicas()
