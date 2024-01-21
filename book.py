@@ -1234,3 +1234,38 @@ def deletarContato():
 inserirContato()
 alterarContato()
 deletarContato()
+#3. Escreva um programa que crie um banco de dados chamado “musicas.db”. Esse BD deve conter três tabelas, mostradas a seguir
+def cria_musicas_db():
+    conector = sqlite3.connect('musicas.db')
+    cursor = conector.cursor()
+
+    sql_criar_tabelas = '''
+    CREATE TABLE IF NOT EXISTS Musicas (
+        nummusica INTEGER PRIMARY KEY,
+        nomemus TEXT,
+        artista TEXT,
+        album TEXT,
+        ano INTEGER,
+        arquivo TEXT
+    );
+
+    CREATE TABLE IF NOT EXISTS Nomespl (
+        nomepl TEXT PRIMARY KEY,
+        data DATE
+    );
+
+    CREATE TABLE IF NOT EXISTS Playlists (
+        nomepl TEXT NOT NULL,
+        nummusica INTEGER NOT NULL,
+        PRIMARY KEY (nomepl, nummusica),
+        FOREIGN KEY (nomepl) REFERENCES Nomespl(nomepl),
+        FOREIGN KEY (nummusica) REFERENCES Musicas(nummusica)
+    );
+    '''
+
+    cursor.execute(sql_criar_tabelas())
+
+    conector.commit()
+    cursor.close()
+    conector.close()
+cria_musicas_db()
