@@ -1259,8 +1259,8 @@ def cria_musicas_db():
         nomepl TEXT NOT NULL,
         nummusica INTEGER NOT NULL,
         PRIMARY KEY (nomepl, nummusica),
-        FOREIGN KEY (nomepl) REFERENCES Nomespl(nomepl),
-        FOREIGN KEY (nummusica) REFERENCES Musicas(nummusica)
+        FOREIGN KEY (nomepl) REFERENCES Nomespl(nomepl)ON UPDATE CASCADE ON DELETE CASCADE,
+        FOREIGN KEY (nummusica) REFERENCES Musicas(nummusica)ON UPDATE CASCADE ON DELETE CASCADE
     );
     '''
 
