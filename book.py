@@ -1264,7 +1264,7 @@ def cria_musicas_db():
     );
     '''
 
-    cursor.execute(sql_criar_tabelas())
+    cursor.executescript(sql_criar_tabelas)
 
     conector.commit()
     cursor.close()
