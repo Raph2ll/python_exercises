@@ -1293,9 +1293,50 @@ def inserir_musicas():
     (nomemus,artista,album,ano,arquivo) VALUES(?,?,?,?,?)
     '''
 
-    valores = [('cat','c418','Minecraft - Volume Alpha','2019','./cat.mp4')]
-
-    cursor.execute(sql_inserir, valores[0])
+    valores = [('cat','c418','Minecraft - Volume Alpha','2019','./cat.mp4'),
+    ('Shape of You', 'Ed Sheeran', '÷ (Divide)', '2017', './shape_of_you.mp4'),
+    ('Despacito', 'Luis Fonsi', 'Vida', '2017', './despacito.mp4'),
+    ('Blinding Lights', 'The Weeknd', 'After Hours', '2020', './blinding_lights.mp4'),
+    ('Uptown Funk', 'Mark Ronson ft. Bruno Mars', 'Uptown Special', '2014', './uptown_funk.mp4'),
+    ('Someone You Loved', 'Lewis Capaldi', 'Divinely Uninspired to a Hellish Extent', '2019', './someone_you_loved.mp4'),
+    ('Bad Guy', 'Billie Eilish', 'When We All Fall Asleep, Where Do We Go?', '2019', './bad_guy.mp4'),
+    ('Believer', 'Imagine Dragons', 'Evolve', '2017', './believer.mp4'),
+    ('Old Town Road', 'Lil Nas X ft. Billy Ray Cyrus', '7', '2019', './old_town_road.mp4'),
+    ('Havana', 'Camila Cabello ft. Young Thug', 'Camila', '2018', './havana.mp4'),
+    ('Sicko Mode', 'Travis Scott', 'Astroworld', '2018', './sicko_mode.mp4'),
+    ('Perfect', 'Ed Sheeran', '÷ (Divide)', '2017', './perfect.mp4'),
+    ('Counting Stars', 'OneRepublic', 'Native', '2013', './counting_stars.mp4'),
+    ('See You Again', 'Wiz Khalifa ft. Charlie Puth', 'Furious 7: Original Motion Picture Soundtrack', '2015', './see_you_again.mp4'),
+    ('Radioactive', 'Imagine Dragons', 'Night Visions', '2012', './radioactive.mp4'),
+    ('Can\'t Stop the Feeling!', 'Justin Timberlake', 'Trolls: Original Motion Picture Soundtrack', '2016', './cant_stop_the_feeling.mp4'),
+    ('Wrecking Ball', 'Miley Cyrus', 'Bangerz', '2013', './wrecking_ball.mp4'),
+    ('Rude', 'Magic!', 'Don\'t Kill the Magic', '2013', './rude.mp4'),
+    ('All of Me', 'John Legend', 'Love in the Future', '2013', './all_of_me.mp4'),
+    ('Happy', 'Pharrell Williams', 'G I R L', '2014', './happy.mp4'),
+    ('Take Me to Church', 'Hozier', 'Hozier', '2013', './take_me_to_church.mp4'),
+    ('A Thousand Years', 'Christina Perri', 'The Twilight Saga: Breaking Dawn – Part 1: Original Motion Picture Soundtrack', '2011', './a_thousand_years.mp4'),
+    ('Thunder', 'Imagine Dragons', 'Evolve', '2017', './thunder.mp4'),
+    ('Happier', 'Marshmello ft. Bastille', 'Happier', '2018', './happier.mp4'),
+    ('High Hopes', 'Panic! At The Disco', 'Pray for the Wicked', '2018', './high_hopes.mp4'),
+    ('Love Me Like You Do', 'Ellie Goulding', 'Fifty Shades of Grey: Original Motion Picture Soundtrack', '2015', './love_me_like_you_do.mp4'),
+    ('Attention', 'Charlie Puth', 'Voicenotes', '2018', './attention.mp4'),
+    ('Stressed Out', 'Twenty One Pilots', 'Blurryface', '2015', './stressed_out.mp4'),
+    ('Shape of You (Acoustic)', 'Ed Sheeran', '÷ (Divide)', '2017', './shape_of_you_acoustic.mp4'),
+    ('Say Something', 'Justin Timberlake ft. Chris Stapleton', 'Man of the Woods', '2018', './say_something.mp4'),
+    ('Bad Romance', 'Lady Gaga', 'The Fame Monster', '2009', './bad_romance.mp4'),
+    ('Circles', 'Post Malone', 'Hollywood\'s Bleeding', '2019', './circles.mp4'),
+    ('Cheap Thrills', 'Sia ft. Sean Paul', 'This Is Acting', '2016', './cheap_thrills.mp4'),
+    ('Firework', 'Katy Perry', 'Teenage Dream', '2010', './firework.mp4'),
+    ('Sugar', 'Maroon 5', 'V', '2014', './sugar.mp4'),
+    ('Watermelon Sugar', 'Harry Styles', 'Fine Line', '2019', './watermelon_sugar.mp4'),
+    ('Senorita', 'Shawn Mendes, Camila Cabello', 'Shawn Mendes & Camila Cabello', '2019', './senorita.mp4'),
+    ('Glad You Came', 'The Wanted', 'The Wanted', '2011', './glad_you_came.mp4'),
+    ('The Lazy Song', 'Bruno Mars', 'Doo-Wops & Hooligans', '2010', './the_lazy_song.mp4'),
+    ('Shut Up and Dance', 'WALK THE MOON', 'TALKING IS HARD', '2014', './shut_up_and_dance.mp4'),
+    ('Bad Blood', 'Taylor Swift ft. Kendrick Lamar', '1989', '2014', './bad_blood.mp4')]
+    
+    for valor in valores:
+        cursor.execute(sql_inserir, valor)
 
     conector.commit()
     cursor.close()
