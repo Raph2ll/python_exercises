@@ -1374,3 +1374,146 @@ excluir_musica()
 alterar_musica()
 inserir_musicas()
 exibir_musicas()
+#5. Escreva um programa que permita exibir, inserir, alterar e excluir playlists (o nome e as músicas relacionadas) no banco de dados do exercício 3. Na inclusão de músicas, o programa só deve permitir inserir na tabela “Playlist” números de músicas que constarem da tabela “Musicas”
+#sqlite3
+#datetime
+def exibir_playlists():
+    conector = sqlite3.connect('musicas.db') 
+    cursor = conector.cursor()
+
+    sql_exibir = 'SELECT * FROM nomespl' 
+
+    cursor.execute(sql_exibir)
+
+    conector.commit()
+    cursor.close()
+    conector.close()
+
+def musica_existe(nummusica):
+    conexao = sqlite3.connect('musicas.db')
+    cursor = conexao.cursor()
+
+    sql_verificar_musica = '''
+        SELECT 1 FROM Musicas
+        WHERE nummusica = ?
+    '''
+
+    cursor.execute(sql_verificar_musica, (nummusica,))
+    resultado = cursor.fetchone()
+
+
+    conexao.close()
+
+
+    return resultado is not None
+
+def inserir_playlist():
+    conector = sqlite3.connect('musicas.db') 
+    cursor = conector.cursor()
+    # Cria playlist
+    sql_cria_playlist = '''
+    INSERT INTO nomespl
+    (nomepl,data) VALUES(?,?)
+    '''
+
+    valor_nomespl = ('Abacaxi', datetime.now())
+
+    cursor.execute(sql_cria_playlist, valor_nomespl)
+
+    # Adiciona musica a playlist
+    sql_adiciona_musica = '''
+    INSERT INTO playlists
+    (nomepl,nummusica) VALUES(?,?)
+    '''
+
+    valores_playlists = [('Abacaxi',1),('Abacaxi',10),('Abacaxi',20),('Abacaxi',23),('Abacaxi',40),('Abacaxi',2000),]
+    for valor in valores_playlists:
+        if(musica_existe(valor[1])):
+            cursor.execute(sql_adiciona_musica, valor)
+        else:
+            print(f'Não foi possivel adicionar a música na posição {valor[1]}')
+    
+    conector.commit()
+    cursor.close()
+    conector.close()
+
+def alterar_nome_playlist(nome_antigo, nome_novo):
+    try:
+        # Conectar ao banco de dados
+        conexao = sqlite3.connect('musicas.db')
+        cursor = conexao.cursor()
+
+        # Verificar se a playlist com o nome_antigo existe
+        sql_verificar_playlist = '''
+            SELECT 1 FROM Nomespl
+            WHERE nomepl = ?
+        '''
+        cursor.execute(sql_verificar_playlist, (nome_antigo,))
+        resultado = cursor.fetchone()
+
+        if resultado:
+            # Atualizar o nome na tabela Nomespl
+            sql_atualizar_nomepl = '''
+                UPDATE Nomespl
+                SET nomepl = ?
+                WHERE nomepl = ?;
+            '''
+            valor_nomespl_atualizado = (nome_novo, nome_antigo)
+            cursor.execute(sql_atualizar_nomepl, valor_nomespl_atualizado)
+
+            # Atualizar o nome na tabela Playlists
+            sql_atualizar_playlist = '''
+                UPDATE Playlists
+                SET nomepl = ?
+                WHERE nomepl = ?;
+            '''
+            cursor.execute(sql_atualizar_playlist, valor_nomespl_atualizado)
+
+            print(f'Nome da playlist {nome_antigo} alterado para {nome_novo}.')
+        else:
+            print(f'Playlist com nome {nome_antigo} não encontrada.')
+
+        # Commit e fechar a conexão
+        conexao.commit()
+    except sqlite3.Error as e:
+        # Tratar erros do SQLite
+        print(f"Erro SQLite: {e}")
+    finally:
+        # Fechar o cursor e a conexão, mesmo em caso de exceção
+        if cursor:
+            cursor.close()
+        if conexao:
+            conexao.close()
+
+def excluir_playlist(excluir):
+    conexao = sqlite3.connect('musicas.db') 
+    cursor = conexao.cursor()
+
+    # Verificar se a playlist com o nome_antigo existe
+    sql_verificar_playlist = '''
+        SELECT 1 FROM Nomespl
+        WHERE nomepl = ?
+    '''
+
+    cursor.execute(sql_verificar_playlist,(excluir,))
+    resultado = cursor.fetchone()
+
+    sql_excluir_playlist= '''
+    DELETE FROM Nomespl WHERE nomepl = ?    
+    '''
+
+    cursor.execute(sql_excluir_playlist,(excluir,))
+
+    sql_excluir_Nomespl_nomepl= '''
+    DELETE FROM Playlists WHERE nomepl = ?    
+    '''
+
+    cursor.execute(sql_excluir_Nomespl_nomepl,(excluir,))
+    conexao.commit()
+    cursor.close()
+    conexao.close()
+
+alterar_nome_playlist('Abacaxi', 'NovaPlaylist')
+inserir_playlist()
+exibir_playlists()
+excluir_playlist('NovaPlaylist')
