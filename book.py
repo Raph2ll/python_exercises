@@ -1517,3 +1517,35 @@ alterar_nome_playlist('Abacaxi', 'NovaPlaylist')
 inserir_playlist()
 exibir_playlists()
 excluir_playlist('NovaPlaylist')
+#6. Escreva um programa que leia um arquivo texto do tipo CSV, com os dados separados pelo caractere ponto e vírgula “;” contendo codigo;qtde;pccompra;pcvenda
+def loja_csv():
+    conector = sqlite3.connect('loja.db') 
+    cursor = conector.cursor()
+    L = []
+
+    sql_criar_tabelas = '''
+    CREATE TABLE IF NOT EXISTS Vendas (
+        codigo INTEGER PRIMARY KEY,
+        qtde INTEGER,
+        pccompra REAL,
+        pcvenda REAL
+    );
+    '''
+
+    cursor.executescript(sql_criar_tabelas)
+
+    sql_inserir = '''
+    INSERT INTO Vendas
+    (codigo,qtde,pccompra,pcvenda) VALUES(?,?,?,?)
+    '''
+
+    for S in open('loja.csv', 'r'):
+        S.rstrip()
+        L = S.split(';')
+        cursor.execute(sql_inserir, (int(L[0]),int(L[1]),float(L[2]), float(L[3])))
+
+    conector.commit()
+    cursor.close()
+    conector.close()
+
+loja_csv()
