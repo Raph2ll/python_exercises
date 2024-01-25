@@ -1549,3 +1549,66 @@ def loja_csv():
     conector.close()
 
 loja_csv()
+#7. Refaça o programa do Exercício proposto 5 do Capítulo 7, gravando os resultados em um banco de dados. O BD e a tabela devem ser criados por esse programa, com nomes de sua escolha. A tabela deve conter os campos: SalBruto, AliqINSS, ValINSS, AliqIR, DeducIR, ValIR, SalLiquido, todos do tipo double. No caso dos salários que atingem o teto do INSS, carregue o campo AliqINSS com 11% em vez da palavra TETO.
+#sqlite3
+def salario_db():
+    conector = sqlite3.connect('salario.db') 
+    cursor = conector.cursor()
+
+    sql_criar_tabelas = '''
+    CREATE TABLE IF NOT EXISTS salarios (
+        id INTEGER PRIMARY KEY,
+        SalBruto REAL,
+        AliqINSS REAL,
+        ValINSS REAL,
+        AliqIR REAL,
+        DeducIR REAL,
+        ValIR REAL,
+        SalLiquido REAL
+    );
+    '''
+
+    cursor.executescript(sql_criar_tabelas)
+
+    sql_inserir = '''
+    INSERT INTO salarios
+    (SalBruto,AliqINSS,ValINSS,AliqIR,DeducIR,ValIR,SalLiquido) VALUES(?,?,?,?,?,?,?)
+    '''
+
+    with open('salario.txt', 'r') as arq_entrada:
+        L = [float(line.rstrip()) for line in arq_entrada]
+        for S in L:
+            SalBruto = S
+
+            if SalBruto < 1556.94:
+                AliqINSS = 8
+            elif SalBruto < 2594.92:
+                AliqINSS = 9
+            elif SalBruto < 5189.82:
+                AliqINSS = 11
+            else: 
+                AliqINSS = 11
+            
+            ValINSS = SalBruto * AliqINSS
+            AliqIR = ValINSS - SalBruto 
+
+            if AliqIR < 1903.98:
+                DeducaoIR = 0.00
+            elif AliqIR < 2826.65:
+                DeducaoIR = 142.80
+            elif AliqIR < 3751.05:
+                DeducaoIR = 354.80
+            elif AliqIR < 4664.68:
+                DeducaoIR = 636.13
+            else:
+                DeducaoIR = 869.36
+            
+            VALIR =(ValINSS - SalBruto) * AliqIR - DeducaoIR
+            SalLiquido = (ValINSS - SalBruto) - VALIR
+
+            cursor.execute(sql_inserir,(SalBruto,AliqINSS,ValINSS,AliqIR,DeducaoIR,VALIR,SalLiquido))
+
+    conector.commit()
+    cursor.close()
+    conector.close()
+salario_db()
