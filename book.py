@@ -1612,3 +1612,56 @@ def salario_db():
     cursor.close()
     conector.close()
 salario_db()
+#8. Refaça o programa do Exercício proposto 6 do Capítulo 7, gravando os RAs e as senhas dos alunos em um banco de dados. O BD e a tabela devem ser criados por esse programa, com nomes de sua escolha.
+#sqlite3
+#string
+#random
+def senha():
+    conector = sqlite3.connect('Senhas.db') 
+    cursor = conector.cursor()
+
+    sql_criar_tabelas = '''
+    CREATE TABLE IF NOT EXISTS senhas (
+        ra INTEGER PRIMARY KEY,
+        senha TEXT
+    );
+    '''
+
+    cursor.execute(sql_criar_tabelas)
+
+    sql_inserir = '''
+        INSERT INTO senhas
+        (ra,senha) VALUES(?,?)
+        '''
+    with open('RA.txt', 'r') as arq_entrada:
+        L = [int(line.rstrip()) for line in arq_entrada]
+    
+    while True:
+        tamanhoSenha = int(input('Digite o tamanho da senha desejada'))
+        if isinstance(tamanhoSenha, int):
+            break
+        elif tamanhoSenha < 0:
+            print('Digite um valor maior que 0')
+        else:
+            print('Digite um valor númerico')
+    while True:
+        tipoDeSenha = int(input('Qual será o tipo de senha a ser gerado ? numérica ou alfanumérica? [1,2]'))
+        if tipoDeSenha == 1:
+            with open('resenha.txt', 'w') as arq_saida:
+                for S in L:
+                    caracteres = string.ascii_letters + string.digits 
+                    alfanumerico = ''.join(random.choice(caracteres) for _ in range(tamanhoSenha))
+                    cursor.execute(sql_inserir,(S,alfanumerico))
+            break
+        elif tipoDeSenha == 2:
+            with open('resenha.txt', 'w') as arq_saida:
+                for S in L:
+                    numerico = random.randrange(10**(tamanhoSenha - 1), 10**tamanhoSenha)
+                    cursor.execute(sql_inserir,(S,numerico))
+            break
+        else:
+            print('Digite 1 ou 2')
+    conector.commit()
+    cursor.close()
+    conector.close()
+print(senha())
