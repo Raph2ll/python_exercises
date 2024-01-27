@@ -24,8 +24,10 @@ def ObtemEntradas():
     s = input('Digite data final (formato: dd/mm/aaaa): ')
     fim = ConverteData(s)
     q = int(input('Digite a quantidade de vendas por dia: '))
+    
+    d = input('Deseja adicionar os sábados ?: [S/n]')
 
-    return ini, fim, q
+    return ini, fim, q, d
 
 def LeArqProdutos():
     dicProd = {}
@@ -90,7 +92,7 @@ def GeraDadosDia(dia, qtvendas):
     
 # Ponto de início da execução
 ExibeApresentacao()
-DtIni, DtFim, Qtde = ObtemEntradas()
+DtIni, DtFim, Qtde, D = ObtemEntradas()
 Prods = LeArqProdutos()
 
 arq = open('VENDAS.TXT', 'w', encoding='UTF-8')
@@ -98,8 +100,13 @@ arq = open('VENDAS.TXT', 'w', encoding='UTF-8')
 UmDia = datetime.timedelta(days=1)
 Cont = DtIni
 
+if D == 'n':
+    day = 5
+else:
+    day = 6
+
 while Cont <= DtFim:
-    if Cont.weekday() < 5:
+    if Cont.weekday() < day:
         GeraDadosDia(Cont, Qtde)
     Cont = Cont + UmDia
 
