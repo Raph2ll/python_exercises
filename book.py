@@ -1696,3 +1696,38 @@ def GeraQtdeVenda(Qtde):
     vendas_por_dia = randint(vendas_min, vendas_max)
 
     return vendas_por_dia
+#2. No programa gerador.py, elabore um método para que, opcionalmente, os sábados possam ser considerados dia nos quais ocorram vendas. O usuário escolherá se quer ou não gerar vendas aos sábados.
+
+def ObtemEntradas():
+    s = input('Digite data inicial (formato: dd/mm/aaaa): ')
+    ini = ConverteData(s)
+    s = input('Digite data final (formato: dd/mm/aaaa): ')
+    fim = ConverteData(s)
+    q = int(input('Digite a quantidade de vendas por dia: '))
+    
+    d = input('Deseja adicionar os sábados ?: [S/n]')
+
+    return ini, fim, q, d
+
+ExibeApresentacao()
+DtIni, DtFim, Qtde, D = ObtemEntradas()
+Prods = LeArqProdutos()
+
+arq = open('VENDAS.TXT', 'w', encoding='UTF-8')
+
+UmDia = datetime.timedelta(days=1)
+Cont = DtIni
+
+if D == 'n':
+    day = 5
+else:
+    day = 6
+
+while Cont <= DtFim:
+    if Cont.weekday() < day:
+        GeraDadosDia(Cont, Qtde)
+    Cont = Cont + UmDia
+
+arq.close()
+print('\nO arquivo de dados foi gerado com sucesso')
+print('\n\nFim do Programa')
