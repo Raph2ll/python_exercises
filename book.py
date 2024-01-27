@@ -1664,4 +1664,35 @@ def senha():
     conector.commit()
     cursor.close()
     conector.close()
+
 print(senha())
+#1. Faça uma alteração no programa gerador.py de modo que ele crie um número variável de vendas por dia que gire em torno do valor fornecido pelo usuário para o objeto Qtde.
+def GeraDadosDia(dia, qtvendas):
+    global Prods, arq
+    L = list(Prods.keys()) # carrega a lista L com os cód. prod.
+
+    for x in range(qtvendas):
+        # sorteia produto, gera um índice e o utiliza na lista
+        iprod = randint(0, len(Prods)-1)
+        codprod = L[iprod]
+        # randomiza a quantidade vendida
+        qtitem = GeraQtdeVenda(Qtde)
+        # randomiza o preco de venda
+        pcunit = GeraPcUnitVenda(codprod)
+
+        a = str(dia.year)+';'+str(dia.month)+';'+str(dia.day)
+        a = a + ';' + str(codprod)
+        a = a + ';' + '{:d}'.format(qtitem)
+        a = a + ';' + '{:.2f}'.format(pcunit)
+        a = a + '\n'
+        
+        arq.write(a)
+
+def GeraQtdeVenda(Qtde):
+    global Prods
+
+    vendas_min = max(0, Qtde - 10)
+    vendas_max = Qtde + 10
+    vendas_por_dia = randint(vendas_min, vendas_max)
+
+    return vendas_por_dia
