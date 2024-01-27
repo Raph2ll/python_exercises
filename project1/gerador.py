@@ -48,18 +48,14 @@ def LeArqProdutos():
 
     return dicProd
 
-def GeraQtdeVenda(codprod):
+def GeraQtdeVenda(Qtde):
     global Prods
-    sorteio = randint(1, 100)
 
-    if sorteio <= 60:
-        q = randint(1, 10)
-    elif sorteio <= 85:
-        q = randint(11, 25)
-    else:
-        q = randint(26, 400)
+    vendas_min = max(0, Qtde - 10)
+    vendas_max = Qtde + 10
+    vendas_por_dia = randint(vendas_min, vendas_max)
 
-    return q
+    return vendas_por_dia
 
 def GeraPcUnitVenda(codprod):
     global Prods
@@ -80,9 +76,10 @@ def GeraDadosDia(dia, qtvendas):
         iprod = randint(0, len(Prods)-1)
         codprod = L[iprod]
         # randomiza a quantidade vendida
-        qtitem = GeraQtdeVenda(codprod)
+        qtitem = GeraQtdeVenda(Qtde)
         # randomiza o preco de venda
         pcunit = GeraPcUnitVenda(codprod)
+
         a = str(dia.year)+';'+str(dia.month)+';'+str(dia.day)
         a = a + ';' + str(codprod)
         a = a + ';' + '{:d}'.format(qtitem)
